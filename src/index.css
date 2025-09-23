@@ -1,68 +1,91 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --radius: 0.625rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* Light Mode - Hotel Branding */
+  --background: #fff8f2; /* soft ivory */
+  --foreground: #2c2c2c; /* charcoal text */
+  --card: #fffaf0; /* warm card background */
+  --card-foreground: #2c2c2c;
+  --popover: #fffaf0;
+  --popover-foreground: #2c2c2c;
+  --primary: #1f3b6c; /* deep navy */
+  --primary-foreground: #fff8f2;
+  --secondary: #e6c07b; /* gold highlight */
+  --secondary-foreground: #2c2c2c;
+  --muted: #f5f5f5; /* soft gray */
+  --muted-foreground: #555555;
+  --accent: #d4af37; /* gold accent */
+  --accent-foreground: #fff8f2;
+  --destructive: #c53030; /* red for destructive actions */
+  --border: #e0dcdc;
+  --input: #faf5f0;
+  --ring: #bfa57b;
+  --sidebar: #fdf8f4;
+  --sidebar-foreground: #2c2c2c;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.dark {
+  /* Dark Mode - Hotel Branding */
+  --background: #1c1c1c; /* dark charcoal */
+  --foreground: #fdf8f4; /* ivory text */
+  --card: #2c2c2c; /* deep card bg */
+  --card-foreground: #fdf8f4;
+  --popover: #2c2c2c;
+  --popover-foreground: #fdf8f4;
+  --primary: #4e6b9a; /* muted navy for dark */
+  --primary-foreground: #fdf8f4;
+  --secondary: #d4af37; /* gold highlight */
+  --secondary-foreground: #1c1c1c;
+  --muted: #3a3a3a;
+  --muted-foreground: #d1d1d1;
+  --accent: #ffd700; /* gold accent */
+  --accent-foreground: #1c1c1c;
+  --destructive: #e53e3e;
+  --border: #444444;
+  --input: #3a3a3a;
+  --ring: #bfa57b;
+  --sidebar: #2c2c2c;
+  --sidebar-foreground: #fdf8f4;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  body {
+    @apply bg-background text-foreground;
   }
 }
