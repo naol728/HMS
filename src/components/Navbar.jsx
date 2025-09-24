@@ -13,6 +13,7 @@ export default function Navbar() {
     { name: "Rooms", path: "/rooms" },
     { name: "Services", path: "/about" },
     { name: "Contact", path: "/contact" },
+    { name: "Sign up", path: "/signup" },
     { name: "Login", path: "/login" },
   ];
 
