@@ -1,16 +1,26 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "@/pages/Home";
+import Home from "@/pages/user/Home";
 import MainLayout from "@/layouts/MainLayout";
-import Rooms from "@/pages/Rooms";
-import About from "@/pages/About";
-import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import Contact from "@/pages/Contact";
-import Book from "@/pages/Book";
+import Rooms from "@/pages/user/Rooms";
+import About from "@/pages/user/About";
+import Login from "@/pages/user/Login";
+import Signup from "@/pages/user/Signup";
+import Contact from "@/pages/user/Contact";
+import Book from "@/pages/user/Book";
+import Profile from "@/pages/user/Profile";
+
+// Admin Pages
+import Dashboard from "@/pages/admin/Dashboard";
+import DashboardRooms from "@/pages/admin/Rooms";
+import DashboardUsers from "@/pages/admin/Users";
+import DashboardReservations from "@/pages/admin/Reservations";
+import DashboardComments from "@/pages/admin/Comments";
+import DashboardSettings from "@/pages/admin/Settings";
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
+
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchUser } from "@/store/features/userSlice";
-import Profile from "@/pages/Profile";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -18,8 +28,10 @@ export default function AppRoutes() {
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
   return (
     <Routes>
+      {/* User Routes */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/rooms" element={<Rooms />} />
@@ -31,6 +43,19 @@ export default function AppRoutes() {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
+      {/* Admin Routes */}
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard">
+          <Route index element={<Dashboard />} />
+          <Route path="rooms" element={<DashboardRooms />} />
+          <Route path="users" element={<DashboardUsers />} />
+          <Route path="reservations" element={<DashboardReservations />} />
+          <Route path="comments" element={<DashboardComments />} />
+          <Route path="settings" element={<DashboardSettings />} />
+        </Route>
+      </Route>
+
+      {/* Fallback Route */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

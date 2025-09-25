@@ -6,7 +6,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AppRoutes />
-      
     </QueryClientProvider>
   );
 }

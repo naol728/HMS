@@ -9,13 +9,17 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const user = useSelector((state) => state.user);
+  const isAdmin = user?.user?.role === "admin";
 
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Rooms", path: "/rooms" },
     { name: "Services", path: "/about" },
-    { name: "Contact", path: "/contact" },
   ];
+
+  if (!isAdmin) {
+    navItems.push({ name: "Contact", path: "/contact" });
+  }
 
   if (!user || !user.user) {
     navItems.push({ name: "Sign up", path: "/signup" });
@@ -51,11 +55,30 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          <li>
-            <Button asChild size="sm" variant="default" className="shadow-sm">
-              <Link to="/book">Book Now</Link>
-            </Button>
-          </li>
+
+          {/* Admin Dashboard Button */}
+          {isAdmin && (
+            <li>
+              <Button
+                asChild
+                size="sm"
+                variant="destructive"
+                className="shadow-sm"
+              >
+                <Link to="/dashboard">Admin Dashboard</Link>
+              </Button>
+            </li>
+          )}
+
+          {/* Book Now Button (hide if admin) */}
+          {!isAdmin && (
+            <li>
+              <Button asChild size="sm" variant="default" className="shadow-sm">
+                <Link to="/book">Book Now</Link>
+              </Button>
+            </li>
+          )}
+
           {/* Theme Toggle */}
           <li>
             <ModeToggle />
@@ -90,11 +113,27 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-              <li>
-                <Button asChild fullWidth variant="default" className="mt-4">
-                  <Link to="/book">Book Now</Link>
-                </Button>
-              </li>
+
+              {isAdmin && (
+                <li>
+                  <Button
+                    asChild
+                    fullWidth
+                    variant="destructive"
+                    className="mt-4"
+                  >
+                    <Link to="/dashboard">Admin Dashboard</Link>
+                  </Button>
+                </li>
+              )}
+
+              {!isAdmin && (
+                <li>
+                  <Button asChild fullWidth variant="default" className="mt-2">
+                    <Link to="/book">Book Now</Link>
+                  </Button>
+                </li>
+              )}
             </ul>
           </SheetContent>
         </Sheet>
