@@ -4,21 +4,28 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import ModeToggle from "./mode-toggle";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Rooms", path: "/rooms" },
     { name: "Services", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Sign up", path: "/signup" },
-    { name: "Login", path: "/login" },
   ];
 
+  if (!user || !user.user) {
+    navItems.push({ name: "Sign up", path: "/signup" });
+    navItems.push({ name: "Login", path: "/login" });
+  } else {
+    navItems.push({ name: "Profile", path: "/profile" });
+  }
+
   return (
-    <nav className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
+    <nav className="bg-background border-b border-border shadow-sm sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link

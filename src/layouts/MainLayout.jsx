@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 export default function MainLayout() {
   return (
@@ -11,6 +12,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <Toaster position="top-center" theme="dark" />
     </div>
   );
 }
