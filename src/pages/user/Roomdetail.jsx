@@ -99,11 +99,17 @@ export default function Roomdetail() {
           </div>
 
           <div className="flex justify-end gap-3 mt-6">
-            <Button variant="outline">
-              {" "}
-              <Link to="/rooms"> Back to Rooms</Link>
+            <Button variant="outline" asChild>
+              <Link to="/rooms">Back to Rooms</Link>
             </Button>
-            <Button>Reserve Now</Button>
+
+            <Button
+              disabled={
+                room.status === "reserved" || room.status === "occupied"
+              }
+            >
+              Reserve Now
+            </Button>
           </div>
         </CardContent>
       </Card>
