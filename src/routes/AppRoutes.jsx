@@ -21,6 +21,7 @@ import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchUser } from "@/store/features/userSlice";
+import Roomdetail from "@/pages/user/Roomdetail";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/rooms" element={<Rooms />} />
+        <Route path="/rooms/:id" element={<Roomdetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -56,7 +58,7 @@ export default function AppRoutes() {
       </Route>
 
       {/* Fallback Route */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 }

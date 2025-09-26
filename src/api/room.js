@@ -69,3 +69,17 @@ export const getRooms = async () => {
     throw new Error(err.message);
   }
 };
+export const getRoomByID = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("rooms")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) throw error;
+    return data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
