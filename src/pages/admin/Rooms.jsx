@@ -1,7 +1,3 @@
-"use client";
-
-import { getRooms } from "@/api/room";
-import { useQuery } from "@tanstack/react-query";
 import {
   Table,
   TableBody,
@@ -22,17 +18,11 @@ import { PlusSquare } from "lucide-react";
 import RoomForm from "@/components/dashboard/RoomForm";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import useRoom from "@/hooks/room/useRoom";
 
 export default function DashboardRooms() {
   const [open, setOpen] = useState(false);
-  const {
-    data: rooms,
-    isLoading,
-    error,
-  } = useQuery({
-    queryFn: getRooms,
-    queryKey: ["getRooms"],
-  });
+  const { data: rooms, isLoading, error } = useRoom();
 
   if (isLoading) return <div>Loading rooms...</div>;
   if (error) return <div>Error loading rooms</div>;
