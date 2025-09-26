@@ -89,9 +89,9 @@ export default function Rooms() {
             </CardContent>
 
             {/* Footer */}
-            <CardFooter>
+            {/* <CardFooter>
               <Button className="w-full">Reserve</Button>
-            </CardFooter>
+            </CardFooter> */}
           </Card>
         ))}
       </div>
