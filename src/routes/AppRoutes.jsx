@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { fetchUser } from "@/store/features/userSlice";
 
 import Landing from "@/pages/landing/Landing";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -32,24 +33,30 @@ export default function AppRoutes() {
       <Route path="/login" element={<Login />} />
 
       {/* User Routes */}
-      {/* <Route element={<MainLayout />}>
-        <Route path="/rooms" element={<Rooms />} />
-        <Route path="/rooms/:id" element={<Roomdetail />} />
-        <Route path="/booked" element={<Book />} />
-        <Route path="/profile" element={<Profile />} />
-      </Route> */}
+      <Route element={<MainLayout />}>
+        <Route element={<ProtectedRoute roles={["customer"]} />}>
+          <Route path="/rooms" element={<>user rooms shower</>} />
+        </Route>
+      </Route>
 
       {/* reservation route */}
+      <Route element={<MainLayout />}>
+        <Route element={<ProtectedRoute roles={["reservation"]} />}>
+          <Route path="/rooms" element={<>user rooms shower</>} />
+        </Route>
+      </Route>
 
       {/* Admin Routes */}
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard">
-          <Route index element={<Dashboard />} />
-          <Route path="rooms" element={<DashboardRooms />} />
-          <Route path="users" element={<DashboardUsers />} />
-          <Route path="reservations" element={<DashboardReservations />} />
-          <Route path="comments" element={<DashboardComments />} />
-          <Route path="settings" element={<DashboardSettings />} />
+        <Route element={<ProtectedRoute roles={["admin"]} />}>
+          <Route path="/dashboard">
+            <Route index element={<Dashboard />} />
+            <Route path="rooms" element={<DashboardRooms />} />
+            <Route path="users" element={<DashboardUsers />} />
+            <Route path="reservations" element={<DashboardReservations />} />
+            <Route path="comments" element={<DashboardComments />} />
+            <Route path="settings" element={<DashboardSettings />} />
+          </Route>
         </Route>
       </Route>
 

@@ -38,15 +38,24 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background px-4">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Login to Your Account
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-background dark:via-background dark:to-muted px-4">
+      <Card className="w-full max-w-md shadow-xl rounded-2xl border border-border">
+        {/* Branding Header */}
+        <CardHeader className="text-center space-y-2 pb-2">
+          <CardTitle className="text-3xl font-extrabold text-primary">
+            <Link to="/">Semayawi Hotel</Link>
           </CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Luxury • Comfort • Convenience
+          </p>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
+
+        <CardContent className="pt-6">
+          <h2 className="text-xl font-bold text-center mb-6">
+            Login to Your Account
+          </h2>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -54,6 +63,7 @@ export default function Login() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
+                placeholder="you@example.com"
                 required
               />
             </div>
@@ -65,13 +75,14 @@ export default function Login() {
                 type="password"
                 value={form.password}
                 onChange={handleChange}
+                placeholder="••••••••"
                 required
               />
             </div>
 
             <Button
               type="submit"
-              className="w-full"
+              className="w-full rounded-md shadow-md hover:shadow-lg transition-all"
               disabled={mutation.isPending}
             >
               {mutation.isPending ? "Logging in..." : "Login"}

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Testimonials() {
   return (
-    <section className="bg-muted py-20 transition-colors" id="testemonial">
+    <section className="bg-muted py-20 transition-colors" id="testimonial">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
         What Our Guests Say
       </h2>

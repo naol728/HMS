@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "@/components/landing/Navbar";
 import { Outlet } from "react-router-dom";
-import Footer from "@/components/Footer";
+import Footer from "@/components/landing/Footer";
 import { Toaster } from "sonner";
 
 export default function MainLayout() {

@@ -13,13 +13,12 @@ export const fetchUser = createAsyncThunk(
       if (sessionError) throw sessionError;
       const userId = session?.user?.id;
 
-      if (!userId) return null; // no logged-in user
+      if (!userId) return null;
 
-      // Fetch profile from your "users" table
       const { data, error } = await supabase
         .from("users")
         .select("id, name, email, role")
-        .eq("id", userId) 
+        .eq("id", userId)
         .single();
 
       if (error) throw error;
@@ -31,11 +30,13 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+const persistedUser = JSON.parse(localStorage.getItem("user_data") || "null");
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,
-    role: localStorage.getItem("user_role") || null,
+    user: persistedUser,
+    role: persistedUser?.role || null,
     loading: false,
     error: null,
   },
@@ -43,12 +44,14 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.role = action.payload?.role || null;
-      if (state.role) localStorage.setItem("user_role", state.role);
+
+      // save full user object
+      localStorage.setItem("user_data", JSON.stringify(action.payload));
     },
     clearUser: (state) => {
       state.user = null;
       state.role = null;
-      localStorage.removeItem("user_role");
+      localStorage.removeItem("user_data");
     },
   },
   extraReducers: (builder) => {
@@ -60,7 +63,11 @@ const userSlice = createSlice({
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.role = action.payload?.role || null;
-        if (state.role) localStorage.setItem("user_role", state.role);
+
+        if (action.payload) {
+          localStorage.setItem("user_data", JSON.stringify(action.payload));
+        }
+
         state.loading = false;
       })
       .addCase(fetchUser.rejected, (state, action) => {
