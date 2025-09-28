@@ -2,30 +2,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ModeToggle from "../mode-toggle";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const user = useSelector((state) => state.user);
-  const isAdmin = user?.user?.role === "admin";
+  const { user } = useSelector((state) => state.user);
+
+  const isAdmin = user?.role === "admin";
+  const isReception = user?.role === "reception";
+  const isCustomer = user?.role === "customer";
 
   const navItems = [
     { name: "Home", path: "#/" },
     { name: "Rooms", path: "#rooms" },
     { name: "About", path: "#about" },
-    { name: "Testemonial", path: "#testemonial" },
+    { name: "Testimonial", path: "#testimonial" },
   ];
-
-  if (!isAdmin) {
-    navItems.push({ name: "Contact", path: "/contact" });
-  }
-
-  if (!user || !user.user) {
-    navItems.push({ name: "Sign up", path: "/signup" });
-    navItems.push({ name: "Login", path: "/login" });
-  }
 
   return (
     <nav className="bg-background border-b border-border shadow-sm sticky top-0 z-30">
@@ -39,50 +33,53 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 items-center">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary font-semibold underline underline-offset-4"
-                    : "text-foreground/80 hover:text-primary transition-colors"
-                }
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
+        <div className="hidden md:flex items-center space-x-6">
+          {/* Anchor Nav */}
+          <ul className="flex space-x-6">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.path}
+                  className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-          {/* Admin Dashboard Button */}
-          {isAdmin && (
-            <li>
-              <Button
-                asChild
-                size="sm"
-                variant="destructive"
-                className="shadow-sm"
-              >
+          {/* Right Section */}
+          <div className="flex items-center space-x-3">
+            {!user && (
+              <>
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/login">Login</Link>
+                </Button>
+                <Button asChild size="sm">
+                  <Link to="/signup">Sign Up</Link>
+                </Button>
+              </>
+            )}
+
+            {isAdmin && (
+              <Button asChild size="sm" variant="destructive">
                 <Link to="/dashboard">Admin Dashboard</Link>
               </Button>
-            </li>
-          )}
-
-          {/* Book Now Button (hide if admin) */}
-          {!isAdmin && (
-            <li>
-              <Button asChild size="sm" variant="default" className="shadow-sm">
-                <Link to="/rooms">Book Now</Link>
+            )}
+            {isReception && (
+              <Button asChild size="sm" variant="secondary">
+                <Link to="/reception">Reception Panel</Link>
               </Button>
-            </li>
-          )}
+            )}
+            {isCustomer && (
+              <Button asChild size="sm" variant="default">
+                <Link to="/rooms">My Bookings</Link>
+              </Button>
+            )}
 
-          {/* Theme Toggle */}
-          <li>
             <ModeToggle />
-          </li>
-        </ul>
+          </div>
+        </div>
 
         {/* Mobile Menu */}
         <Sheet open={open} onOpenChange={setOpen}>
@@ -90,49 +87,68 @@ export default function Navbar() {
             <Menu size={28} className="text-foreground" />
           </SheetTrigger>
           <SheetContent side="right" className="p-6 bg-background">
+            {/* Header */}
             <div className="flex justify-between items-center mb-6">
               <span className="text-xl font-bold text-primary">
                 Semayawi Hotel
               </span>
               <ModeToggle />
             </div>
+
+            {/* Nav Links */}
             <ul className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.path}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary font-semibold"
-                        : "text-foreground/80 hover:text-primary transition-colors"
-                    }
+                    onClick={() => setOpen(false)}
+                    className="block text-foreground/80 hover:text-primary font-medium transition-colors"
                   >
                     {item.name}
                   </a>
                 </li>
               ))}
+            </ul>
+
+            {/* Auth & Role Buttons */}
+            <div className="mt-6 space-y-3">
+              {!user && (
+                <>
+                  <Button asChild fullWidth variant="outline">
+                    <Link to="/login" onClick={() => setOpen(false)}>
+                      Login
+                    </Link>
+                  </Button>
+                  <Button asChild fullWidth>
+                    <Link to="/signup" onClick={() => setOpen(false)}>
+                      Sign Up
+                    </Link>
+                  </Button>
+                </>
+              )}
 
               {isAdmin && (
-                <li>
-                  <Button
-                    asChild
-                    fullWidth
-                    variant="destructive"
-                    className="mt-4"
-                  >
-                    <Link to="/dashboard">Admin Dashboard</Link>
-                  </Button>
-                </li>
+                <Button asChild fullWidth variant="destructive">
+                  <Link to="/dashboard" onClick={() => setOpen(false)}>
+                    Admin Dashboard
+                  </Link>
+                </Button>
               )}
-
-              {!isAdmin && (
-                <li>
-                  <Button asChild fullWidth variant="default" className="mt-2">
-                    <Link to="/rooms">Book Now</Link>
-                  </Button>
-                </li>
+              {isReception && (
+                <Button asChild fullWidth variant="secondary">
+                  <Link to="/reception" onClick={() => setOpen(false)}>
+                    Reception Panel
+                  </Link>
+                </Button>
               )}
-            </ul>
+              {isCustomer && (
+                <Button asChild fullWidth>
+                  <Link to="/rooms" onClick={() => setOpen(false)}>
+                    My Bookings
+                  </Link>
+                </Button>
+              )}
+            </div>
           </SheetContent>
         </Sheet>
       </div>
