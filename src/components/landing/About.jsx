@@ -29,7 +29,7 @@ export default function About() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
+    <div className="max-w-7xl mx-auto px-6 py-16 space-y-12" id="about">
       {/* Intro */}
       <section className="text-center space-y-4">
         <h1 className="text-4xl font-bold">About Semayawi Hotel</h1>
