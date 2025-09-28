@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
-import ModeToggle from "./mode-toggle";
+import ModeToggle from "../mode-toggle";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
@@ -12,9 +12,10 @@ export default function Navbar() {
   const isAdmin = user?.user?.role === "admin";
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Rooms", path: "/rooms" },
-    { name: "Services", path: "/about" },
+    { name: "Home", path: "#/" },
+    { name: "Rooms", path: "#rooms" },
+    { name: "About", path: "#about" },
+    { name: "Testemonial", path: "#testemonial" },
   ];
 
   if (!isAdmin) {
@@ -24,8 +25,6 @@ export default function Navbar() {
   if (!user || !user.user) {
     navItems.push({ name: "Sign up", path: "/signup" });
     navItems.push({ name: "Login", path: "/login" });
-  } else {
-    navItems.push({ name: "Profile", path: "/profile" });
   }
 
   return (
@@ -43,8 +42,8 @@ export default function Navbar() {
         <ul className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <li key={item.name}>
-              <NavLink
-                to={item.path}
+              <a
+                href={item.path}
                 className={({ isActive }) =>
                   isActive
                     ? "text-primary font-semibold underline underline-offset-4"
@@ -52,7 +51,7 @@ export default function Navbar() {
                 }
               >
                 {item.name}
-              </NavLink>
+              </a>
             </li>
           ))}
 
@@ -74,7 +73,7 @@ export default function Navbar() {
           {!isAdmin && (
             <li>
               <Button asChild size="sm" variant="default" className="shadow-sm">
-                <Link to="/book">Book Now</Link>
+                <Link to="/rooms">Book Now</Link>
               </Button>
             </li>
           )}
@@ -100,17 +99,16 @@ export default function Navbar() {
             <ul className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <NavLink
-                    to={item.path}
+                  <a
+                    href={item.path}
                     className={({ isActive }) =>
                       isActive
                         ? "text-primary font-semibold"
                         : "text-foreground/80 hover:text-primary transition-colors"
                     }
-                    onClick={() => setOpen(false)}
                   >
                     {item.name}
-                  </NavLink>
+                  </a>
                 </li>
               ))}
 
@@ -130,7 +128,7 @@ export default function Navbar() {
               {!isAdmin && (
                 <li>
                   <Button asChild fullWidth variant="default" className="mt-2">
-                    <Link to="/book">Book Now</Link>
+                    <Link to="/rooms">Book Now</Link>
                   </Button>
                 </li>
               )}

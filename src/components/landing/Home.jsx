@@ -1,11 +1,10 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  // Hero image carousel
   const heroImages = ["/hero.jpg", "/hero2.jpg", "/hero3.jpg"];
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -34,11 +33,11 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeIn delay-400">
             <Button size="lg" asChild variant="default">
-              <Link to="/rooms">Book a Room</Link>
+              <Link to="/">Book a Room</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            {/* <Button size="lg" variant="outline" asChild>
               <Link to="/about">View Services</Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
@@ -115,66 +114,6 @@ export default function Home() {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="bg-muted py-20 transition-colors">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          What Our Guests Say
-        </h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              text: "Amazing stay! The staff was very welcoming and the rooms are spotless.",
-              name: "Hana T/Hana",
-            },
-            {
-              text: "The restaurant serves the best local dishes. Highly recommend!",
-              name: "Abenezer A",
-            },
-            {
-              text: "Booking was super easy and convenient. Will stay here again.",
-              name: "Meaza S",
-            },
-          ].map((feedback) => (
-            <Card
-              key={feedback.name}
-              className="text-center border border-border rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card"
-            >
-              <CardContent>
-                <p className="italic text-foreground/90">"{feedback.text}"</p>
-                <h3 className="mt-4 font-bold">{feedback.name}</h3>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Newsletter / Call to Action */}
-      <section className="bg-primary text-primary-foreground py-16 px-4">
-        <div className="max-w-2xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Stay Updated with Semayawi Hotel
-          </h2>
-          <p className="text-lg md:text-xl opacity-90">
-            Subscribe to our newsletter for the latest offers and news.
-          </p>
-
-          {/* Input + Button Group */}
-          <div className="flex flex-col  sm:flex-row items-center justify-center w-full">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full sm:w-auto flex-1 px-4 py-3 rounded-md sm:rounded-r-none border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary transition"
-            />
-            <Button
-              variant="secondary"
-              className="w-full sm:w-auto px-6 py-3 rounded-md sm:rounded-l-none mt-4 sm:mt-0"
-            >
-              Subscribe
-            </Button>
-          </div>
         </div>
       </section>
     </div>

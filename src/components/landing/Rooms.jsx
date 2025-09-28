@@ -12,15 +12,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 export default function Rooms() {
   const { data: rooms, isLoading, error } = useRoom();
-  const navigate = useNavigate();
-
-  function handleShowdetail(id) {
-    navigate(`/rooms/${id}`);
-  }
 
   if (isLoading)
     return <div className="text-center py-10">Loading rooms...</div>;
@@ -36,7 +30,7 @@ export default function Rooms() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto" id="rooms">
       <h2 className="text-4xl font-extrabold mb-10 text-center">
         🏨 Explore Our Rooms
       </h2>
@@ -45,7 +39,6 @@ export default function Rooms() {
         {rooms?.map((room) => (
           <Card
             key={room.id}
-            onClick={() => handleShowdetail(room.id)} // ✅ whole card is clickable
             className="overflow-hidden border shadow-md hover:shadow-xl transition-all duration-300 rounded-xl cursor-pointer group"
           >
             {/* Image */}
@@ -89,9 +82,16 @@ export default function Rooms() {
             </CardContent>
 
             {/* Footer */}
-            {/* <CardFooter>
-              <Button className="w-full">Reserve</Button>
-            </CardFooter> */}
+            <CardFooter>
+              <Button
+                className="w-full"
+                disabled={
+                  room.status === "reserved" || room.status === "occupied"
+                }
+              >
+                Reserve
+              </Button>
+            </CardFooter>
           </Card>
         ))}
       </div>
