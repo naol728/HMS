@@ -5,7 +5,7 @@ import Signup from "@/pages/auth/Signup";
 
 // Admin Pages
 import Dashboard from "@/pages/admin/Dashboard";
-import DashboardRooms from "@/pages/admin/Rooms";
+import { DashboardRooms } from "@/pages/admin/Rooms";
 import DashboardUsers from "@/pages/admin/Users";
 import DashboardReservations from "@/pages/admin/Reservations";
 import DashboardComments from "@/pages/admin/Comments";

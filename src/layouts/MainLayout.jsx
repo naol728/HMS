@@ -12,7 +12,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
-      <Toaster position="top-center" theme="dark" />
+     
     </div>
   );
 }
