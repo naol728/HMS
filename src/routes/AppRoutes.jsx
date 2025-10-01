@@ -24,6 +24,8 @@ import Rooms from "@/pages/user/Rooms";
 import Roomdetail from "@/pages/user/Roomdetail";
 import UserRooms from "@/pages/user/UserRooms";
 import Success from "@/pages/user/Success";
+import UserReservation from "@/pages/user/UserReservation";
+import ReservedRoomdetail from "@/pages/user/ReservedRoomdetail";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -42,6 +44,11 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoute roles={["customer"]} />}>
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/rooms/:id" element={<Roomdetail />} />
+          <Route path="/myreservation" element={<UserReservation />} />
+          <Route
+            path="/reservations/:roomid/:reservationid"
+            element={<ReservedRoomdetail />}
+          />
           <Route path="/myrooms" element={<UserRooms />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/success" element={<Success />} />

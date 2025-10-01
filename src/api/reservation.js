@@ -60,3 +60,16 @@ export const getUserReservation = async (id) => {
     throw new Error(err.message);
   }
 };
+export const getReservationbyid = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("reservations")
+      .select("*")
+      .eq("id", id)
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};

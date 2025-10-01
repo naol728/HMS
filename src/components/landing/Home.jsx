@@ -23,11 +23,11 @@ export default function Home() {
         style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
       >
         <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeIn text-primary-foreground">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
+          <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeIn text-teal-500/70">
             Welcome to Semayawi Hotel
           </h1>
-          <p className="mt-4 text-xl md:text-2xl drop-shadow-md max-w-2xl animate-fadeIn delay-200 text-primary-foreground/90">
+          <p className="mt-4 text-xl md:text-2xl drop-shadow-md max-w-2xl animate-fadeIn delay-200 text-teal-400/60">
             Experience luxury, comfort, and convenience in the heart of Debre
             Berhan.
           </p>
@@ -35,9 +35,6 @@ export default function Home() {
             <Button size="lg" asChild variant="default">
               <Link to="/">Book a Room</Link>
             </Button>
-            {/* <Button size="lg" variant="outline" asChild>
-              <Link to="/about">View Services</Link>
-            </Button> */}
           </div>
         </div>
       </section>

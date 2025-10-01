@@ -1,134 +1,109 @@
-/* eslint-disable */
+import useUserRoom from "@/hooks/room/useUserRoom";
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
-import { getUserReservation } from "@/api/reservation";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Loader2, CalendarDays, DollarSign, BedDouble } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function UserRooms() {
-  const userid = useSelector((state) => state.user.user.id);
-  const email = useSelector((state) => state.user.user.email);
+  const { userrooms, userroomerr, userroomloading } = useUserRoom();
 
-  const { data, error, isLoading, refetch } = useQuery({
-    queryFn: () => getUserReservation(userid),
-    queryKey: ["getUserReservation", userid],
-  });
-
-  // Handle payment
-  async function handlePayNow(reservation) {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/payment/checkout",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            reservation_id: reservation.id,
-            amount: reservation.total_price,
-            email,
-            first_name: reservation.user_first_name || "First",
-            last_name: reservation.user_last_name || "Last",
-          }),
-        }
-      );
-
-      const res = await response.json();
-      const data = res.data;
-      console.log(data);
-      if (data?.checkout_url) {
-        window.location.href = data.checkout_url;
-      } else {
-        alert("Failed to create payment session.");
-        console.error(data);
-      }
-    } catch (err) {
-      console.error("Payment Error:", err);
-      alert("Something went wrong during payment.");
-    }
+  if (userroomloading) {
+    return (
+      <div className="flex justify-center items-center min-h-[50vh]">
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+        <span className="ml-2 text-muted-foreground">
+          Loading your reservations...
+        </span>
+      </div>
+    );
   }
 
-  // Refetch reservations after returning from payment success page
-  React.useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    if (queryParams.get("payment") === "success") {
-      refetch();
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }, [refetch]);
+  if (userroomerr) {
+    return (
+      <div className="text-red-500 text-center p-6">
+        Failed to load reservations. Please try again.
+      </div>
+    );
+  }
 
-  if (isLoading) return <div>Loading reservations...</div>;
-  if (error) return <div>Error loading reservations</div>;
-  if (!data || data.length === 0) return <div>No reservations found</div>;
+  if (!userrooms || userrooms.length === 0) {
+    return (
+      <div className="text-center p-6 text-muted-foreground">
+        You don’t have any confirmed reservations yet.
+      </div>
+    );
+  }
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">My Reservations</h2>
+    <div className="container mx-auto p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {userrooms.map((room) => (
+        <Card
+          key={room.id}
+          className="shadow-md hover:shadow-lg transition-shadow border border-border/40 flex flex-col justify-between"
+        >
+          <div>
+            <CardHeader>
+              <CardTitle className="flex justify-between items-center">
+                Reservation
+                <Badge
+                  variant={
+                    room.status === "confirmed" ? "default" : "secondary"
+                  }
+                >
+                  {room.status}
+                </Badge>
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2 text-sm text-muted-foreground">
+                <CalendarDays className="w-4 h-4" />
+                {room.check_in} → {room.check_out}
+              </CardDescription>
+            </CardHeader>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Check-in</TableHead>
-            <TableHead>Check-out</TableHead>
-            <TableHead>Total Price</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Payment Status</TableHead>
-            <TableHead> Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((res) => (
-            <TableRow key={res.id}>
-              <TableCell>{res.check_in}</TableCell>
-              <TableCell>{res.check_out}</TableCell>
-              <TableCell>${res.total_price}</TableCell>
-              <TableCell>
+            <CardContent className="space-y-3">
+              <div className="flex items-center gap-2 text-foreground">
+                <BedDouble className="w-4 h-4" />
+                <span className="text-sm">
+                  Room ID: {room.room_id.slice(0, 6)}...
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 text-foreground font-medium">
+                <span className=" text-green-600">ETB</span>
+                <span>{room.total_price} Birr</span>
+              </div>
+
+              <div className="flex items-center justify-between">
                 <Badge
+                  className="capitalize"
                   variant={
-                    res.status === "confirmed"
-                      ? "default"
-                      : res.status === "pending"
-                      ? "secondary"
-                      : "destructive"
+                    room.payment_status === "paid" ? "success" : "outline"
                   }
                 >
-                  {res.status}
+                  {room.payment_status}
                 </Badge>
-              </TableCell>
-              <TableCell>
-                <Badge
-                  variant={
-                    res.payment_status === "paid"
-                      ? "default"
-                      : res.payment_status === "pending"
-                      ? "secondary"
-                      : "destructive"
-                  }
-                >
-                  {res.payment_status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                {res.payment_status === "pending" ? (
-                  <Button size="sm" onClick={() => handlePayNow(res)}>
-                    Pay Now
-                  </Button>
-                ) : (
-                  <>Payed</>
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+                <span className="text-xs text-muted-foreground">
+                  Booked on {new Date(room.created_at).toLocaleDateString()}
+                </span>
+              </div>
+            </CardContent>
+          </div>
+
+          {/* View Details Button */}
+          <div className="p-4 pt-0">
+            <Link to={`/reservations/${room.room_id}/${room.id}`}>
+              <Button className="w-full">View Details</Button>
+            </Link>
+          </div>
+        </Card>
+      ))}
     </div>
   );
 }
