@@ -35,7 +35,7 @@ import useRoom from "@/hooks/room/useRoom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { deleteRoom } from "@/api/room";
-import RoomForm from "@/components/dashboard/RoomForm";
+import RoomForm from "@/components/admin/RoomForm";
 import {
   Dialog,
   DialogContent,
@@ -56,7 +56,7 @@ import {
 } from "@/components/ui/sheet";
 import { Edit2 } from "lucide-react";
 import { Trash2 } from "lucide-react";
-import EditRoom from "@/components/dashboard/EditRoom";
+import EditRoom from "@/components/admin/EditRoom";
 
 export function DashboardRooms() {
   const [sorting, setSorting] = React.useState([]);

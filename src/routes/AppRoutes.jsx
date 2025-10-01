@@ -10,7 +10,7 @@ import DashboardUsers from "@/pages/admin/Users";
 import DashboardReservations from "@/pages/admin/Reservations";
 import DashboardComments from "@/pages/admin/Comments";
 import DashboardSettings from "@/pages/admin/Settings";
-import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import DashboardLayout from "@/components/admin/DashboardLayout";
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -18,6 +18,12 @@ import { fetchUser } from "@/store/features/userSlice";
 
 import Landing from "@/pages/landing/Landing";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import UserLayout from "@/layouts/UserLayout";
+import Profile from "@/pages/user/Profile";
+import Rooms from "@/pages/user/Rooms";
+import Roomdetail from "@/pages/user/Roomdetail";
+import UserRooms from "@/pages/user/UserRooms";
+import Success from "@/pages/user/Success";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -32,10 +38,13 @@ export default function AppRoutes() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
 
-      {/* User Routes */}
-      <Route element={<MainLayout />}>
+      <Route element={<UserLayout />}>
         <Route element={<ProtectedRoute roles={["customer"]} />}>
-          <Route path="/rooms" element={<>user rooms shower</>} />
+          <Route path="/rooms" element={<Rooms />} />
+          <Route path="/rooms/:id" element={<Roomdetail />} />
+          <Route path="/myrooms" element={<UserRooms />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/success" element={<Success />} />
         </Route>
       </Route>
 
