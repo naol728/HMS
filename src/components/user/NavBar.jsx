@@ -1,103 +1,108 @@
 "use client";
 
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, LogOut } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
+import ModeToggle from "../mode-toggle";
 
 export default function UserNavbar() {
-  const navLinks = [
+  const [open, setOpen] = useState(false);
+
+  const navItems = [
     { name: "Rooms", path: "/rooms" },
+    { name: "My Reservation", path: "/myreservation" },
     { name: "My Rooms", path: "/myrooms" },
     { name: "Profile", path: "/profile" },
   ];
 
   return (
-    <header className="border-b bg-background sticky top-0 z-50 shadow-sm">
-      <div className="container px-3 flex h-14 items-center justify-between">
+    <nav className="bg-background border-b border-border shadow-sm sticky top-0 z-30">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="font-bold text-xl tracking-tight text-primary">
+        <Link
+          to="/"
+          className="text-2xl font-extrabold text-primary tracking-tight hover:opacity-90 transition"
+        >
           Semayawi Hotel
         </Link>
 
-        {/* Centered Desktop nav */}
-        <nav className="hidden md:flex flex-1 justify-center gap-8">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `relative text-sm font-medium transition-colors hover:text-primary ${
-                  isActive ? "text-primary" : "text-muted-foreground"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {link.name}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"></span>
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </nav>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-6">
+          {/* Nav Links */}
+          <ul className="flex space-x-6">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `text-foreground/80 hover:text-primary transition-colors font-medium ${
+                      isActive ? "text-primary font-semibold" : ""
+                    }`
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
 
-        {/* Right side (optional for user actions) */}
-        <div className="hidden md:flex items-center gap-2">
-          <Button size="sm" variant="outline">
-            Logout
-          </Button>
+          {/* Right Section */}
+          <div className="flex items-center space-x-3">
+            <Button size="sm" variant="outline" className="gap-2">
+              <LogOut className="w-4 h-4" />
+              Logout
+            </Button>
+            <ModeToggle />
+          </div>
         </div>
 
-        {/* Mobile nav (Sheet / Drawer) */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
+        {/* Mobile Menu */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger className="md:hidden">
+            <Menu size={28} className="text-foreground" />
           </SheetTrigger>
-          <SheetContent side="left" className="p-6">
-            <div className="flex flex-col h-full">
-              {/* Mobile Logo */}
-              <Link
-                to="/"
-                className="font-bold text-lg text-primary mb-6"
-                onClick={() => document.body.click()} // close drawer after click
-              >
+          <SheetContent side="right" className="p-6 bg-background">
+            {/* Header */}
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-xl font-bold text-primary">
                 Semayawi Hotel
-              </Link>
+              </span>
+              <ModeToggle />
+            </div>
 
-              {/* Nav Links */}
-              <nav className="flex flex-col gap-4">
-                {navLinks.map((link) => (
+            {/* Nav Links */}
+            <ul className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <li key={item.name}>
                   <NavLink
-                    key={link.path}
-                    to={link.path}
+                    to={item.path}
+                    onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `text-base font-medium transition-colors hover:text-primary ${
-                        isActive ? "text-primary" : "text-muted-foreground"
+                      `block text-foreground/80 hover:text-primary font-medium transition-colors ${
+                        isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
-                    {link.name}
+                    {item.name}
                   </NavLink>
-                ))}
-              </nav>
+                </li>
+              ))}
+            </ul>
 
-              {/* Bottom logout */}
-              <div className="mt-auto pt-6">
-                <Button variant="outline" className="w-full">
+            {/* Bottom Logout */}
+            <div className="mt-6 space-y-3">
+              <Button asChild fullWidth variant="outline" className="gap-2">
+                <Link to="/logout" onClick={() => setOpen(false)}>
+                  <LogOut className="w-4 h-4" />
                   Logout
-                </Button>
-              </div>
+                </Link>
+              </Button>
             </div>
           </SheetContent>
         </Sheet>
       </div>
-    </header>
+    </nav>
   );
 }
