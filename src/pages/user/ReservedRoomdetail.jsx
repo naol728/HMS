@@ -1,7 +1,7 @@
 import { getReservationbyid } from "@/api/reservation";
 import { getRoomByID } from "@/api/room";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Card,
@@ -12,18 +12,18 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Loader2,
-  CalendarDays,
-  BedDouble,
-  DollarSign,
-  Percent,
-  ArrowLeft,
-} from "lucide-react";
+import { Loader2, CalendarDays, Percent, ArrowLeft } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import FeedBackForm from "@/components/user/FeedBackForm";
+import { useSelector } from "react-redux";
+import { getfeedbacks } from "@/api/feedback";
 
 export default function ReservedRoomdetail() {
   const { roomid, reservationid } = useParams();
   const navigate = useNavigate();
+  const userid = useSelector((state) => state.user.user.id);
+
+  const [open, setOpen] = useState(false);
 
   const {
     data: room,
@@ -43,7 +43,16 @@ export default function ReservedRoomdetail() {
     queryFn: () => getReservationbyid(reservationid),
   });
 
-  if (roomloading || reservationloading) {
+  const {
+    data: feedback,
+    isLoading: feedbackloading,
+    error: feedbackerror,
+  } = useQuery({
+    queryFn: () => getfeedbacks(reservationid, userid),
+    queryKey: ["getfeedbacks", reservationid, userid],
+    enabled: !!reservationid && !!userid,
+  });
+  if (roomloading || reservationloading || feedbackloading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
         <Loader2 className="w-6 h-6 animate-spin text-primary" />
@@ -54,7 +63,7 @@ export default function ReservedRoomdetail() {
     );
   }
 
-  if (roomerror || reservationerror) {
+  if (roomerror || reservationerror || feedbackerror) {
     return (
       <div className="text-red-500 text-center p-6">
         Failed to load reservation details. Please try again.
@@ -70,6 +79,8 @@ export default function ReservedRoomdetail() {
     );
   }
 
+  // Ensure feedback is null if API returns nothing
+  const hasFeedback = feedback && feedback.length > 0;
   return (
     <div className="container mx-auto p-6 max-w-3xl space-y-6">
       {/* Back Button */}
@@ -150,10 +161,48 @@ export default function ReservedRoomdetail() {
             </span>
           </div>
 
-          {/* Feedback Button */}
-          <div className="pt-4">
-            <Button className="w-full">Give Feedback</Button>
-          </div>
+          {/* Feedback Section */}
+          {hasFeedback ? (
+            <div className="mt-4 border rounded-md p-4 bg-muted/40 space-y-2">
+              <h3 className="font-semibold text-lg">Your Feedback</h3>
+
+              {feedback.map((fb) => (
+                <div
+                  key={fb.id}
+                  className="space-y-2 border-b last:border-0 pb-2"
+                >
+                  <p>
+                    <span className="font-medium">Rating:</span>{" "}
+                    <span className="text-yellow-600">{fb.rating} / 5</span>
+                  </p>
+                  <p>
+                    <span className="font-medium">Comment:</span>{" "}
+                    <span className="text-foreground">
+                      {fb.comment === "no" ? "No comment provided" : fb.comment}
+                    </span>
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Submitted on {new Date(fb.created_at).toLocaleString()}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="pt-4">
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <Button className="w-full">Give Feedback</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <FeedBackForm
+                    roomid={roomid}
+                    reservationid={reservationid}
+                    onClose={() => setOpen(false)}
+                  />
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

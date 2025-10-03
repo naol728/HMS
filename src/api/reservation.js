@@ -66,7 +66,7 @@ export const getReservationbyid = async (id) => {
       .from("reservations")
       .select("*")
       .eq("id", id)
-      .single();
+      .maybeSingle();
     if (error) throw new Error(error.message);
     return data;
   } catch (err) {

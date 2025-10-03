@@ -162,7 +162,12 @@ export default function RoomDetail() {
                 </Button>
               </DialogTrigger>
               <DialogContent>
-                <ReserveRoom room={room} />
+                {({ onOpenChange }) => (
+                  <ReserveRoom
+                    room={room}
+                    onClose={() => onOpenChange(false)}
+                  />
+                )}
               </DialogContent>
             </Dialog>
           </div>
