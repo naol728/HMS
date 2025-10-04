@@ -1,5 +1,13 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import MainLayout from "@/layouts/MainLayout";
+import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { fetchUser } from "@/store/features/userSlice";
+import Landing from "@/pages/landing/Landing";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import UserLayout from "@/layouts/UserLayout";
+
+// auth page
 import Login from "@/pages/auth/Login";
 import Signup from "@/pages/auth/Signup";
 
@@ -12,13 +20,7 @@ import DashboardComments from "@/pages/admin/Comments";
 import DashboardSettings from "@/pages/admin/Settings";
 import DashboardLayout from "@/components/admin/DashboardLayout";
 
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchUser } from "@/store/features/userSlice";
-
-import Landing from "@/pages/landing/Landing";
-import ProtectedRoute from "@/components/ProtectedRoute";
-import UserLayout from "@/layouts/UserLayout";
+// user page
 import Profile from "@/pages/user/Profile";
 import Rooms from "@/pages/user/Rooms";
 import Roomdetail from "@/pages/user/Roomdetail";
@@ -26,6 +28,11 @@ import UserRooms from "@/pages/user/UserRooms";
 import Success from "@/pages/user/Success";
 import UserReservation from "@/pages/user/UserReservation";
 import ReservedRoomdetail from "@/pages/user/ReservedRoomdetail";
+// reseption page
+import ReseptionLayout from "@/components/reception/ReseptionLayout";
+import Reseption from "@/pages/reception/Reseption";
+import Reserveroom from "@/pages/reception/Reserveroom";
+import PayReservation from "./../pages/reception/PayReservation";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -56,9 +63,14 @@ export default function AppRoutes() {
       </Route>
 
       {/* reservation route */}
-      <Route element={<MainLayout />}>
-        <Route element={<ProtectedRoute roles={["reservation"]} />}>
-          <Route path="/rooms" element={<>user rooms shower</>} />
+      <Route element={<ReseptionLayout />}>
+        <Route element={<ProtectedRoute roles={["reception"]} />}>
+          <Route path="/reception">
+            <Route index element={<Reseption />} />
+            <Route path="reserveroom" element={<Reserveroom />} />
+            <Route path="payreservation" element={<PayReservation />} />
+            <Route path="settings" element={<DashboardSettings />} />
+          </Route>
         </Route>
       </Route>
 
@@ -75,9 +87,6 @@ export default function AppRoutes() {
           </Route>
         </Route>
       </Route>
-
-      {/* Fallback Route */}
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 }
