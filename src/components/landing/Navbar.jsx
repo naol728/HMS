@@ -128,14 +128,14 @@ export default function Navbar() {
               )}
 
               {isAdmin && (
-                <Button asChild fullWidth variant="destructive">
+                <Button asChild fullWidth>
                   <Link to="/dashboard" onClick={() => setOpen(false)}>
                     Admin Dashboard
                   </Link>
                 </Button>
               )}
               {isReception && (
-                <Button asChild fullWidth variant="secondary">
+                <Button asChild fullWidth>
                   <Link to="/reception" onClick={() => setOpen(false)}>
                     Reception Panel
                   </Link>

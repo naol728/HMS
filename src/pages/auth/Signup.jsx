@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
@@ -26,7 +25,7 @@ export default function Signup() {
     onSuccess: (user) => {
       toast.success("Account created successfully!");
       dispatch(setUser(user));
-      navigate("/");
+      window.location.href = "/";
     },
     onError: (error) => {
       console.log(error);

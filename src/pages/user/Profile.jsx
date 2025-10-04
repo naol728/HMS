@@ -14,20 +14,18 @@ import { logoutUser } from "@/api/auth";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearUser } from "@/store/features/userSlice";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 export default function Profile() {
   const user = useSelector((state) => state.user?.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { mutate, isPending } = useMutation({
     mutationFn: logoutUser,
     mutationKey: ["logoutUser"],
     onSuccess: () => {
-      toast.success("logout sucessfuly ");
-      dispatch(clearUser);
-      navigate("/");
+      toast.success("Logged out successfully");
+      dispatch(clearUser());
+      window.location.href = "/";
     },
     onError: (error) => {
       toast.error(error.message || "Failed to Logout");

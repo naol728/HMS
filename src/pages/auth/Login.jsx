@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({ email: "", password: "" });
@@ -21,7 +21,7 @@ export default function Login() {
     onSuccess: (user) => {
       toast.success("Login successful!");
       dispatch(setUser(user));
-      navigate("/");
+      window.location.href = "/";
     },
     onError: (error) => {
       toast.error(error.message || "Login failed");

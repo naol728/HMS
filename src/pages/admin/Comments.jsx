@@ -17,7 +17,7 @@ export default function DashboardComments() {
 
   const [search, setSearch] = useState("");
 
-  const feedbacks = data || [];
+  const feedbacks = useMemo(() => data || [], [data]);
 
   // Filter by room number or type
   const filteredFeedbacks = useMemo(() => {

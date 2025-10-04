@@ -51,7 +51,19 @@ export const getUserReservation = async (id) => {
   try {
     const { data, error } = await supabase
       .from("reservations")
-      .select("*")
+      .select(
+        `*, rooms:room_id (
+          id,
+          room_number,
+          type,
+          status,
+          image_url
+        ), users:user_id (
+          id,
+          name,
+          email
+        )`
+      )
       .eq("user_id", id);
     if (error) throw new Error(error.message);
 
@@ -71,5 +83,32 @@ export const getReservationbyid = async (id) => {
     return data;
   } catch (err) {
     throw new Error(err.message);
+  }
+};
+
+export const getAllReservation = async () => {
+  try {
+    const { data, error } = await supabase.from("reservations").select(`
+        *,
+        users:user_id (
+          id,
+          name,
+          email
+        ),
+        rooms:room_id (
+          id,
+          room_number,
+          type,
+          status,
+          image_url
+        )
+      `);
+
+    if (error) throw new Error(error.message);
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching reservations:", error.message);
+    throw new Error(error.message);
   }
 };
