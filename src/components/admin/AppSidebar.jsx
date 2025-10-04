@@ -24,8 +24,8 @@ const items = [
   { title: "Overview", url: "/dashboard", icon: Home },
   { title: "Rooms", url: "/dashboard/rooms", icon: PlusSquare },
   { title: "Users", url: "/dashboard/users", icon: Users },
-  { title: "Reservations", url: "/dashboard/reservations", icon: Calendar },
-  { title: "Comments", url: "/dashboard/comments", icon: MessageSquare },
+  // { title: "Report", url: "/dashboard/reservations", icon: Calendar },
+  { title: "Feedbacks", url: "/dashboard/comments", icon: MessageSquare },
   { title: "Profile Settings", url: "/dashboard/settings", icon: Settings },
 ];
 

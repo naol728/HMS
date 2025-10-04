@@ -63,8 +63,9 @@ export const createRoom = async (formData) => {
 
 export const getRooms = async () => {
   try {
-    const rooms = await supabase.from("rooms").select("*");
-    return rooms.data;
+    const { data, error } = await supabase.from("rooms").select("*");
+    if (error) throw new Error(error.message);
+    return data;
   } catch (err) {
     throw new Error(err.message);
   }
