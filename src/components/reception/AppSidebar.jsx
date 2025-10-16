@@ -30,6 +30,11 @@ const items = [
     icon: BedDouble,
   },
   {
+    title: "Delete Reservation",
+    url: "/reception/updatereserveroom",
+    icon: BedDouble,
+  },
+  {
     title: "Pay to Reservation",
     url: "/reception/payreservation",
     icon: CreditCard,

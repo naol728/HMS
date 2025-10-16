@@ -64,7 +64,8 @@ export const getUserReservation = async (id) => {
           email
         )`
       )
-      .eq("user_id", id);
+      .eq("user_id", id)
+      .eq("is_active", true);
     if (error) throw new Error(error.message);
 
     return data;
@@ -78,6 +79,7 @@ export const getReservationbyid = async (id) => {
       .from("reservations")
       .select("*")
       .eq("id", id)
+      .eq("is_active", true)
       .maybeSingle();
     if (error) throw new Error(error.message);
     return data;
@@ -88,7 +90,10 @@ export const getReservationbyid = async (id) => {
 
 export const getAllReservation = async () => {
   try {
-    const { data, error } = await supabase.from("reservations").select(`
+    const { data, error } = await supabase
+      .from("reservations")
+      .select(
+        `
         *,
         users:user_id (
           id,
@@ -102,7 +107,9 @@ export const getAllReservation = async () => {
           status,
           image_url
         )
-      `);
+      `
+      )
+      .eq("is_active", true);
 
     if (error) throw new Error(error.message);
 
@@ -110,5 +117,29 @@ export const getAllReservation = async () => {
   } catch (error) {
     console.error("Error fetching reservations:", error.message);
     throw new Error(error.message);
+  }
+};
+export const deletereservation = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("reservations")
+      .delete()
+      .eq("id", id)
+      .select()
+      .maybeSingle();
+
+    if (error) throw new Error(error.message);
+    if (!data) throw new Error("Reservation not found");
+
+    const { error: roomError } = await supabase
+      .from("rooms")
+      .update({ status: "available" })
+      .eq("id", data.room_id);
+
+    if (roomError) throw new Error(roomError.message);
+
+    return true;
+  } catch (err) {
+    throw new Error(err.message);
   }
 };

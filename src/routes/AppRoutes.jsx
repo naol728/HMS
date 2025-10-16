@@ -33,6 +33,7 @@ import ReseptionLayout from "@/components/reception/ReseptionLayout";
 import Reseption from "@/pages/reception/Reseption";
 import Reserveroom from "@/pages/reception/Reserveroom";
 import PayReservation from "./../pages/reception/PayReservation";
+import UpdateReservation from "@/pages/reception/UpdateReservation";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ export default function AppRoutes() {
             <Route index element={<Reseption />} />
             <Route path="reserveroom" element={<Reserveroom />} />
             <Route path="payreservation" element={<PayReservation />} />
+            <Route path="updatereserveroom" element={<UpdateReservation />} />
             <Route path="settings" element={<DashboardSettings />} />
           </Route>
         </Route>
