@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { getUserReservation } from "@/api/reservation";
+import { deletereservation, getUserReservation } from "@/api/reservation";
 import {
   Table,
   TableBody,
@@ -21,6 +21,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function UserReservation() {
   const userid = useSelector((state) => state.user.user.id);
@@ -29,6 +30,18 @@ export default function UserReservation() {
   const { data, error, isLoading, refetch } = useQuery({
     queryFn: () => getUserReservation(userid),
     queryKey: ["getUserReservation", userid],
+  });
+  const queryclient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: deletereservation,
+    mutationKey: ["deletereservation"],
+    onSuccess: () => {
+      queryclient.invalidateQueries({ queryKey: "getUserReservation" });
+      toast.success("sucessfully deleted reservation");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
   });
 
   // Handle payment
@@ -120,6 +133,7 @@ export default function UserReservation() {
                 <TableHead className="font-semibold text-right">
                   Action
                 </TableHead>
+                <TableHead className="font-semibold">Delete</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -156,6 +170,7 @@ export default function UserReservation() {
                       {res.payment_status}
                     </Badge>
                   </TableCell>
+
                   <TableCell className="text-right">
                     {res.payment_status === "pending" ? (
                       <Button
@@ -168,6 +183,15 @@ export default function UserReservation() {
                     ) : (
                       <span className="text-muted-foreground">✅ Paid</span>
                     )}
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="destructive"
+                      onClick={() => mutate(res.id)}
+                      disabled={isPending}
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

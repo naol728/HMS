@@ -3,10 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const heroImages = ["/hero.jpg", "/hero2.jpg", "/hero3.jpg"];
   const [currentImage, setCurrentImage] = useState(0);
+  const { user } = useSelector((state) => state.user);
+
+  const isAdmin = user?.role === "admin";
+  const isReception = user?.role === "reception";
+  const isCustomer = user?.role === "customer";
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,9 +38,28 @@ export default function Home() {
             Berhan.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeIn delay-400">
-            <Button size="lg" asChild variant="default">
-              <Link to="/">Book a Room</Link>
-            </Button>
+            {isAdmin && (
+              <Button asChild size="lg">
+                <Link to="/dashboard">Admin Dashboard</Link>
+              </Button>
+            )}
+            {isReception && (
+              <Button asChild size="lg">
+                <Link to="/reception">Reception Panel</Link>
+              </Button>
+            )}
+            {isCustomer && (
+              <Button asChild size="lg">
+                <Link to="/rooms">Book Now</Link>
+              </Button>
+            )}
+            {user ? (
+              <></>
+            ) : (
+              <Button asChild size="lg">
+                <Link to="/login">Login</Link>
+              </Button>
+            )}
           </div>
         </div>
       </section>
@@ -65,53 +90,6 @@ export default function Home() {
             <CardContent>{item.desc}</CardContent>
           </Card>
         ))}
-      </section>
-
-      {/* Popular Rooms Section */}
-      <section className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-          Our Popular Rooms
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/371051287.jpg?k=0cf386306e47d379f3486bf2374499beed53b3ef5ddb6c0c108acec88dae8e8f&o=&hp=1",
-              name: "Deluxe Room",
-              desc: "Comfortable deluxe room with city view.",
-              price: 80,
-            },
-            {
-              img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/370253859.jpg?k=47464b2f220676d9bb3575fd97f1e017b6ac187c93a02fa956e8655f705e7830&o=&hp=1",
-              name: "Executive Suite",
-              desc: "Luxurious suite with living area and premium amenities.",
-              price: 150,
-            },
-            {
-              img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS20_9KxlSj0Qidm4ejMAeem_XdhZi1pCQvTg&s",
-              name: "Standard Room",
-              desc: "Cozy and affordable room for solo travelers.",
-              price: 50,
-            },
-          ].map((room) => (
-            <Card
-              key={room.name}
-              className="overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-xl border border-border bg-card"
-            >
-              <img
-                src={room.img}
-                alt={room.name}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent>
-                <h3 className="text-xl font-semibold">{room.name}</h3>
-                <p className="text-foreground/80 mt-2">{room.desc}</p>
-                <p className="mt-2 font-bold text-lg text-primary">
-                  Price: ${room.price}/night
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
       </section>
     </div>
   );

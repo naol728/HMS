@@ -50,10 +50,10 @@ export default function UserNavbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-3">
-            <Button size="sm" variant="outline" className="gap-2">
+            {/* <Button size="sm" variant="outline" className="gap-2">
               <LogOut className="w-4 h-4" />
               Logout
-            </Button>
+            </Button> */}
             <ModeToggle />
           </div>
         </div>
@@ -92,14 +92,14 @@ export default function UserNavbar() {
             </ul>
 
             {/* Bottom Logout */}
-            <div className="mt-6 space-y-3">
+            {/* <div className="mt-6 space-y-3">
               <Button asChild fullWidth variant="outline" className="gap-2">
                 <Link to="/logout" onClick={() => setOpen(false)}>
                   <LogOut className="w-4 h-4" />
                   Logout
                 </Link>
               </Button>
-            </div>
+            </div> */}
           </SheetContent>
         </Sheet>
       </div>
