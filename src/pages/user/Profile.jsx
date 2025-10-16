@@ -62,7 +62,6 @@ export default function Profile() {
           </span>
         </CardHeader>
         <CardContent className="flex justify-center gap-4 mt-6">
-          <Button variant="default">Edit Profile</Button>
           <Button
             variant="destructive"
             onClick={() => mutate()}

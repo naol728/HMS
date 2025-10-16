@@ -28,10 +28,6 @@ export default function DashboardSettings() {
     navigate("/");
   };
 
-  const handleChangePassword = () => {
-    navigate("/change-password");
-  };
-
   if (!user) {
     return (
       <div className="p-6 text-center text-muted-foreground">
@@ -90,15 +86,6 @@ export default function DashboardSettings() {
           <Separator className="my-4" />
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              variant="outline"
-              className="flex items-center gap-2"
-              onClick={handleChangePassword}
-            >
-              <Lock className="w-4 h-4" />
-              Change Password
-            </Button>
-
             <Button
               variant="destructive"
               className="flex items-center gap-2"

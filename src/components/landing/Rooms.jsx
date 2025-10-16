@@ -12,9 +12,16 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Rooms() {
   const { data: rooms, isLoading, error } = useRoom();
+  const { user } = useSelector((state) => state.user);
+
+  const isAdmin = user?.role === "admin";
+  const isReception = user?.role === "reception";
+  const isCustomer = user?.role === "customer";
 
   if (isLoading)
     return <div className="text-center py-10">Loading rooms...</div>;
@@ -89,7 +96,10 @@ export default function Rooms() {
                   room.status === "reserved" || room.status === "occupied"
                 }
               >
-                Reserve
+                {isAdmin && <Link to="/dashboard">Admin Dashboard</Link>}
+                {isReception && <Link to="/reception">Reception Panel</Link>}
+                {isCustomer && <Link to="/rooms">Reserve</Link>}
+                {user ? <></> : <Link to="/login">Login</Link>}
               </Button>
             </CardFooter>
           </Card>
