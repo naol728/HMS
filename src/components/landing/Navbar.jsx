@@ -63,7 +63,7 @@ export default function Navbar() {
 
             {isAdmin && (
               <Button asChild size="sm" variant="destructive">
-                <Link to="/dashboard">Admin Dashboard</Link>
+                <Link to="/dashboard">Manager Dashboard</Link>
               </Button>
             )}
             {isReception && (

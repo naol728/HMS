@@ -40,9 +40,7 @@ export function AppSidebar() {
           <h1 className="text-xl font-bold text-primary">
             <Link to="/">Samrawi Hotel </Link>
           </h1>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Admin Dashboard
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Dashboard</p>
         </div>
 
         {/* Navigation */}

@@ -40,7 +40,7 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeIn delay-400">
             {isAdmin && (
               <Button asChild size="lg">
-                <Link to="/dashboard">Admin Dashboard</Link>
+                <Link to="/dashboard">Manager Dashboard</Link>
               </Button>
             )}
             {isReception && (
