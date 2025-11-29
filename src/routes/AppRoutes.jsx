@@ -34,6 +34,9 @@ import Reseption from "@/pages/reception/Reseption";
 import Reserveroom from "@/pages/reception/Reserveroom";
 import PayReservation from "./../pages/reception/PayReservation";
 import UpdateReservation from "@/pages/reception/UpdateReservation";
+import ForgotPassword from "@/pages/auth/ForgotPassword";
+import ResetPassword from "@/pages/auth/ResetPassword";
+import ChangePassword from "@/pages/auth/ChangePassword";
 
 export default function AppRoutes() {
   const dispatch = useDispatch();
@@ -47,7 +50,9 @@ export default function AppRoutes() {
       <Route path="/" element={<Landing />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route element={<UserLayout />}>
         <Route element={<ProtectedRoute roles={["customer"]} />}>
           <Route path="/rooms" element={<Rooms />} />

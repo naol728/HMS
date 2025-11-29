@@ -14,7 +14,7 @@ import { logoutUser } from "@/api/auth";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearUser } from "@/store/features/userSlice";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export default function Profile() {
   const user = useSelector((state) => state.user?.user);
@@ -61,7 +61,10 @@ export default function Profile() {
             {user.role}
           </span>
         </CardHeader>
-        <CardContent className="flex justify-center gap-4 mt-6">
+        <CardContent className="flex justify-around gap-4 mt-6">
+          <Link to="/reset-password">
+            <Button>Change Password</Button>
+          </Link>
           <Button
             variant="destructive"
             onClick={() => mutate()}
