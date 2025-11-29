@@ -97,6 +97,15 @@ export default function Login() {
                 Sign up
               </Link>
             </p>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Forgot your Password?{" "}
+              <Link
+                to="/forgot-password"
+                className="text-primary hover:underline font-medium"
+              >
+                Forgot Password
+              </Link>
+            </p>
           </form>
         </CardContent>
       </Card>

@@ -30,10 +30,10 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
-          <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeIn text-teal-500/70">
+          <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeIn text-blue-500/70">
             Welcome to Semayawi Hotel
           </h1>
-          <p className="mt-4 text-xl md:text-2xl drop-shadow-md max-w-2xl animate-fadeIn delay-200 text-teal-400/60">
+          <p className="mt-4 text-xl md:text-2xl drop-shadow-md max-w-2xl animate-fadeIn delay-200 text-blue-400/60">
             Experience luxury, comfort, and convenience in the heart of Debre
             Berhan.
           </p>
