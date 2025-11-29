@@ -48,7 +48,7 @@ export default function UserReservation() {
   async function handlePayNow(reservation) {
     try {
       const response = await fetch(
-        "https://hms-payment.onrender.com/api/payment/checkout",
+        `${import.meta.env.VITE_BACKENDURL}/payment/checkout`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

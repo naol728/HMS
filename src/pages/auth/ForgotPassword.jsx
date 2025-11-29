@@ -23,7 +23,7 @@ export default function ForgotPassword() {
     e.preventDefault();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "https://hms-lilac-one.vercel.app/reset-password",
+      redirectTo: `${import.meta.env.VITE_DEPLOYEDURL}/reset-password`,
     });
 
     if (error) {
