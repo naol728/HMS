@@ -42,20 +42,16 @@ export default function ForgotPassword() {
       <Card className="w-full max-w-md shadow-xl rounded-2xl border border-border">
         <CardHeader className="text-center space-y-2 pb-2">
           <CardTitle className="text-3xl font-extrabold text-primary">
-            <Link to="/">Semayawi Hotel</Link>
+            <Link to="/">ሰማያዊ ሆቴል</Link>
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Luxury • Comfort • Convenience
-          </p>
+          <p className="text-sm text-muted-foreground">የቅንጦት • ምቾት • ምቾት</p>
         </CardHeader>
 
         <form onSubmit={handleReset} className="flex gap-5 flex-col">
           <CardContent className="space-y-4">
-            <h2 className="text-xl font-bold text-center mb-6">
-              Forgot Password
-            </h2>
+            <h2 className="text-xl font-bold text-center mb-6">መለያ አለዎት?</h2>
             <p className="text-center">
-              Enter your email and we'll send password reset instructions.
+              ኢሜይልዎን ያስገቡ እና የይለፍ ቃል ዳግም ማስጀመሪያ መመሪያዎችን እንልክልዎታለን።
             </p>
 
             <div className="space-y-2">
@@ -72,7 +68,7 @@ export default function ForgotPassword() {
 
           <CardFooter>
             <Button className="w-full" type="submit">
-              Send Reset Email
+              ኢሜይል ላክ
             </Button>
           </CardFooter>
         </form>

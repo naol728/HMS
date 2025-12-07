@@ -89,9 +89,7 @@ export default function UserReservation() {
     return (
       <div className="flex justify-center items-center h-60">
         <Loader2 className="animate-spin w-6 h-6 text-primary" />
-        <span className="ml-2 text-muted-foreground">
-          Loading reservations...
-        </span>
+        <span className="ml-2 text-muted-foreground">ቦታ ማስያዣዎችን በመጫን ላይ..</span>
       </div>
     );
 
@@ -105,7 +103,7 @@ export default function UserReservation() {
   if (!data || data.length === 0)
     return (
       <div className="text-center text-muted-foreground">
-        No reservations found
+        ምንም ቦታ ማስያዣዎች አልተገኙም
       </div>
     );
 
@@ -114,10 +112,10 @@ export default function UserReservation() {
       <Card className="shadow-lg border">
         <CardHeader className="pb-4">
           <CardTitle className="text-2xl font-bold text-primary">
-            My Reservations
+            ቦታ ማስያዣዎቼ
           </CardTitle>
           <CardDescription>
-            Track your booking details and complete pending payments.
+            የቦታ ማስያዣ ዝርዝሮችዎን ይከታተሉ እና በመጠባበቅ ላይ ያሉ ክፍያዎችን ያጠናቅቁ።
           </CardDescription>
         </CardHeader>
 
@@ -125,15 +123,13 @@ export default function UserReservation() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="font-semibold">Check-in</TableHead>
-                <TableHead className="font-semibold">Check-out</TableHead>
-                <TableHead className="font-semibold">Total Price</TableHead>
-                <TableHead className="font-semibold">Status</TableHead>
-                <TableHead className="font-semibold">Payment</TableHead>
-                <TableHead className="font-semibold text-right">
-                  Action
-                </TableHead>
-                <TableHead className="font-semibold">Delete</TableHead>
+                <TableHead className="font-semibold">ያረጋግጡ</TableHead>
+                <TableHead className="font-semibold">ቼክ-አውት</TableHead>
+                <TableHead className="font-semibold">ጠቅላላ ዋጋ</TableHead>
+                <TableHead className="font-semibold">ሁኔታ</TableHead>
+                <TableHead className="font-semibold">ክፍያ</TableHead>
+                <TableHead className="font-semibold text-right">እርምጃ</TableHead>
+                <TableHead className="font-semibold">ሰርዝ</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -181,7 +177,7 @@ export default function UserReservation() {
                         Pay Now
                       </Button>
                     ) : (
-                      <span className="text-muted-foreground">✅ Paid</span>
+                      <span className="text-muted-foreground">✅ የተከፈለ</span>
                     )}
                   </TableCell>
                   <TableCell>
@@ -190,7 +186,7 @@ export default function UserReservation() {
                       onClick={() => mutate(res.id)}
                       disabled={isPending}
                     >
-                      Delete
+                      ሰርዝ
                     </Button>
                   </TableCell>
                 </TableRow>

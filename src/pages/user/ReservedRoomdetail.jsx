@@ -99,17 +99,17 @@ export default function ReservedRoomdetail() {
       <Card className="shadow-lg border border-border/40">
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
-            Room {room.room_number}
+            ክፍል {room.room_number}
             <Badge variant="default" className="capitalize">
               {room.type}
             </Badge>
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Reserved from{" "}
+            የተያዘው ከ{" "}
             <span className="font-medium text-foreground">
               {reservation.check_in}
             </span>{" "}
-            to{" "}
+            ወደ{" "}
             <span className="font-medium text-foreground">
               {reservation.check_out}
             </span>
@@ -137,13 +137,13 @@ export default function ReservedRoomdetail() {
 
             <div className="flex items-center gap-2 text-foreground font-medium">
               <span className=" text-green-600">ETB</span>
-              <span>{room.price_per_night} Birr / night</span>
+              <span>{room.price_per_night} Birr / ለሊት</span>
             </div>
 
             {room.discount > 0 && (
               <div className="flex items-center gap-2 text-amber-700 font-medium">
                 <Percent className="w-4 h-4" />
-                <span>{room.discount}% Discount</span>
+                <span>{room.discount}% ቅናሽ</span>
               </div>
             )}
           </div>
@@ -151,11 +151,11 @@ export default function ReservedRoomdetail() {
           {/* Reservation Dates */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <CalendarDays className="w-4 h-4" />
-            Check-in:{" "}
+            ያረጋግጡ፥{" "}
             <span className="text-foreground font-medium">
               {reservation.check_in}
             </span>{" "}
-            | Check-out:{" "}
+            | ተመዝግቦ መውጣት፦{" "}
             <span className="text-foreground font-medium">
               {reservation.check_out}
             </span>
@@ -191,7 +191,7 @@ export default function ReservedRoomdetail() {
             <div className="pt-4">
               <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                  <Button className="w-full">Give Feedback</Button>
+                  <Button className="w-full">ግብረመልስ ይስጡ</Button>
                 </DialogTrigger>
                 <DialogContent>
                   <FeedBackForm

@@ -56,19 +56,19 @@ export default function UpdateReservation() {
 
   return (
     <Card className="p-6 shadow-lg">
-      <h2 className="text-2xl font-bold mb-6">📋 Manage Reservations</h2>
+      <h2 className="text-2xl font-bold mb-6">📋 ቦታ ማስያዣዎችን ያቀናብሩ</h2>
 
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Room</TableHead>
-            <TableHead>Guest</TableHead>
-            <TableHead>Check-in</TableHead>
-            <TableHead>Check-out</TableHead>
-            <TableHead>Total Price (ETB)</TableHead>
-            <TableHead>Payment</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Delete</TableHead>
+            <TableHead>ክፍል</TableHead>
+            <TableHead>እንግዳ</TableHead>
+            <TableHead>ያረጋግጡ</TableHead>
+            <TableHead>ቼክ-አውት</TableHead>
+            <TableHead>ጠቅላላ ዋጋ (ETB)</TableHead>
+            <TableHead>ክፍያ</TableHead>
+            <TableHead>ሁኔታ</TableHead>
+            <TableHead>ሰርዝ</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -137,7 +137,7 @@ export default function UpdateReservation() {
                   disabled={isPending || res.payment_status === "paid"}
                   onClick={() => deleteReservation(res.id)}
                 >
-                  Delete
+                  ሰርዝ
                 </Button>
               </TableCell>
             </TableRow>

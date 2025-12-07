@@ -22,10 +22,10 @@ export default function Newsletter() {
     <section className="bg-primary text-primary-foreground py-16 px-4">
       <div className="max-w-2xl mx-auto text-center space-y-6">
         <h2 className="text-3xl md:text-4xl font-bold">
-          Stay Updated with Semayawi Hotel
+          ከሰማያዊ ሆቴል ጋር ወቅታዊ መረጃ ያግኙ
         </h2>
         <p className="text-lg md:text-xl opacity-90">
-          Subscribe to our newsletter for the latest offers and news.
+          ለቅርብ ጊዜ ቅናሾች እና ዜናዎች ለጋዜጣችን ይመዝገቡ።
         </p>
 
         <div className="flex flex-col  sm:flex-row items-center justify-center w-full">
@@ -42,7 +42,7 @@ export default function Newsletter() {
             onClick={() => mutate(email)}
             disable={isPending}
           >
-            Subscribe
+            ሰብስክራይብ
           </Button>
         </div>
       </div>

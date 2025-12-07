@@ -98,7 +98,7 @@ export default function RoomDetail() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
               <CardTitle className="text-3xl font-bold">
-                Room {room.room_number}
+                ክፍል {room.room_number}
               </CardTitle>
               <CardDescription className="text-lg capitalize">
                 {room.type}
@@ -108,7 +108,7 @@ export default function RoomDetail() {
             {/* Price */}
             <div className="text-right">
               <p className="text-2xl font-bold text-primary">
-                {discountedPrice} ETB / night
+                {discountedPrice} ETB / ሌሊት
               </p>
               {room.discount > 0 && (
                 <p className="text-sm text-muted-foreground line-through">
@@ -129,19 +129,19 @@ export default function RoomDetail() {
           {/* Info Grid */}
           <div className="grid sm:grid-cols-2 gap-4 text-base">
             <div>
-              <span className="font-semibold">Status:</span>{" "}
+              <span className="font-semibold">ሁኔታ:</span>{" "}
               <span className="capitalize">{room.status}</span>
             </div>
             <div>
-              <span className="font-semibold">Discount:</span>{" "}
+              <span className="font-semibold">ቅናሽ:</span>{" "}
               {room.discount ? `${room.discount}%` : "No discount"}
             </div>
             <div>
-              <span className="font-semibold">Created At:</span>{" "}
+              <span className="font-semibold">የተፈጠረው በ:</span>{" "}
               {new Date(room.created_at).toLocaleString()}
             </div>
             <div>
-              <span className="font-semibold">Updated At:</span>{" "}
+              <span className="font-semibold">የተዘመነው በ:</span>{" "}
               {new Date(room.updated_at).toLocaleString()}
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function RoomDetail() {
           {/* Actions */}
           <div className="flex justify-end gap-4 pt-4">
             <Button variant="outline" asChild>
-              <Link to="/rooms">Back to Rooms</Link>
+              <Link to="/rooms">ወደ ክፍሎች ተመለስ</Link>
             </Button>
 
             <Dialog>
@@ -158,7 +158,7 @@ export default function RoomDetail() {
                 className="transition-transform hover:scale-105"
               >
                 <Button disabled={room.status !== "available"}>
-                  Reserve Now
+                  አሁኑኑ ቦታ ያስይዙ
                 </Button>
               </DialogTrigger>
               <DialogContent>

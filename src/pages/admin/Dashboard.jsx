@@ -111,27 +111,27 @@ export default function DashboardOverview() {
   return (
     <div className="p-6 space-y-8">
       {/* Title */}
-      <h1 className="text-3xl font-bold">🏨 Hotel Dashboard Overview</h1>
+      <h1 className="text-3xl font-bold">🏨 የሆቴል ዳሽቦርድ አጠቃላይ እይታ</h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Total Rooms"
+          title="ጠቅላላ ክፍሎች"
           value={totalRooms}
           icon={<BedDouble className="text-primary" />}
         />
         <StatCard
-          title="Reserved Rooms"
+          title="የተያዙ ክፍሎች"
           value={reservedRooms}
           icon={<CalendarCheck className="text-green-500" />}
         />
         <StatCard
-          title="Total Users"
+          title="ጠቅላላ ተጠቃሚዎች"
           value={totalUsers}
           icon={<Users className="text-blue-500" />}
         />
         <StatCard
-          title="Total Revenue"
+          title="ጠቅላላ ገቢ"
           value={`ETB ${totalRevenue}`}
           icon={<DollarSign className="text-yellow-500" />}
         />
@@ -140,7 +140,7 @@ export default function DashboardOverview() {
       {/* Enhanced Bar Chart */}
       <Card className="shadow-md">
         <CardHeader>
-          <CardTitle>Overview Summary</CardTitle>
+          <CardTitle>አጠቃላይ እይታ ማጠቃለያ</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-[320px]">
@@ -193,7 +193,7 @@ export default function DashboardOverview() {
       {/* Revenue Line Chart */}
       <Card className="shadow-md">
         <CardHeader>
-          <CardTitle>Revenue Trend (Recent Transactions)</CardTitle>
+          <CardTitle>የገቢ አዝማሚያ (Recent Transactions)</CardTitle>
         </CardHeader>
         <CardContent>
           {revenueByDate.length > 0 ? (
@@ -217,7 +217,7 @@ export default function DashboardOverview() {
             </div>
           ) : (
             <p className="text-center text-muted-foreground">
-              No revenue data available yet.
+              እስካሁን ምንም የገቢ መረጃ የለም።
             </p>
           )}
         </CardContent>

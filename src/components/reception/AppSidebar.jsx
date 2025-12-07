@@ -20,27 +20,27 @@ import {
 
 const items = [
   {
-    title: "Reserved Rooms",
+    title: "የተያዙ ክፍሎች",
     url: "/reception",
     icon: CalendarCheck,
   },
   {
-    title: "Reserve Room",
+    title: "የመጠባበቂያ ክፍል",
     url: "/reception/reserveroom",
     icon: BedDouble,
   },
   {
-    title: "Delete Reservation",
+    title: "ቦታ ማስያዝን ሰርዝ",
     url: "/reception/updatereserveroom",
     icon: BedDouble,
   },
   {
-    title: "Pay to Reservation",
+    title: "ቦታ ለማስያዝ ይክፈሉ",
     url: "/reception/payreservation",
     icon: CreditCard,
   },
   {
-    title: "Profile Settings",
+    title: "የመገለጫ ቅንብሮች",
     url: "/reception/settings",
     icon: Settings,
   },
@@ -54,17 +54,17 @@ export function AppSidebar() {
       {/* Hotel Brand Section */}
       <div className="px-4 py-6 text-center border-b border-gray-200 dark:border-gray-800">
         <h1 className="text-2xl font-extrabold text-primary tracking-tight">
-          <Link to="/">Samrawi Hotel</Link>
+          <Link to="/">ሰማያዊ ሆቴል</Link>
         </h1>
         <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
-          Reception Dashboard
+          የመቀበያ ዳሽቦርድ
         </p>
       </div>
 
       <SidebarContent className="flex-1 flex flex-col overflow-y-auto">
         <SidebarGroup className="flex-1">
           <SidebarGroupLabel className="px-4 pt-6 text-gray-500 dark:text-gray-400 text-sm font-semibold uppercase">
-            Navigation
+            አሰሳ
           </SidebarGroupLabel>
 
           <SidebarGroupContent className="mt-3 flex-1">

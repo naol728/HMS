@@ -20,7 +20,7 @@ export default function UserRooms() {
       <div className="flex justify-center items-center min-h-[50vh]">
         <Loader2 className="w-6 h-6 animate-spin text-primary" />
         <span className="ml-2 text-muted-foreground">
-          Loading your reservations...
+          ቦታ ማስያዣዎችዎን በመጫን ላይ...
         </span>
       </div>
     );
@@ -37,7 +37,7 @@ export default function UserRooms() {
   if (!userrooms || userrooms.length === 0) {
     return (
       <div className="text-center p-6 text-muted-foreground">
-        You don’t have any confirmed reservations yet.
+        እስካሁን ምንም የተረጋገጡ ቦታ ማስያዣዎች የሉዎትም።
       </div>
     );
   }
@@ -52,7 +52,7 @@ export default function UserRooms() {
           <div>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
-                Reservation
+                ቦታ ማስያዝ
                 <Badge
                   variant={
                     room.status === "confirmed" ? "default" : "secondary"
@@ -71,13 +71,13 @@ export default function UserRooms() {
               <div className="flex items-center gap-2 text-foreground">
                 <BedDouble className="w-4 h-4" />
                 <span className="text-sm">
-                  Room ID: {room.room_id.slice(0, 6)}...
+                  የክፍል መታወቂያ: {room.room_id.slice(0, 6)}...
                 </span>
               </div>
 
               <div className="flex items-center gap-2 text-foreground font-medium">
                 <span className=" text-green-600">ETB</span>
-                <span>{room.total_price} Birr</span>
+                <span>{room.total_price} ብር</span>
               </div>
 
               <div className="flex items-center justify-between">
@@ -90,7 +90,7 @@ export default function UserRooms() {
                   {room.payment_status}
                 </Badge>
                 <span className="text-xs text-muted-foreground">
-                  Booked on {new Date(room.created_at).toLocaleDateString()}
+                  የተያዘው በ {new Date(room.created_at).toLocaleDateString()}
                 </span>
               </div>
             </CardContent>
@@ -99,7 +99,7 @@ export default function UserRooms() {
           {/* View Details Button */}
           <div className="p-4 pt-0">
             <Link to={`/reservations/${room.room_id}/${room.id}`}>
-              <Button className="w-full">View Details</Button>
+              <Button className="w-full">ዝርዝሮችን ይመልከቱ</Button>
             </Link>
           </div>
         </Card>

@@ -72,7 +72,6 @@ export default function RoomForm({ setOpen }) {
       reset();
       setImages([]);
 
-      // ✅ Close dialog
       setOpen(false);
     },
     onError: (err) => {
@@ -103,38 +102,32 @@ export default function RoomForm({ setOpen }) {
 
     const formData = new FormData();
 
-    // append text inputs
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
-    // append images
     images.forEach((img) => {
       formData.append("images", img);
     });
 
-    // ✅ Debug log
     for (let [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }
 
-    // send to mutation
     mutate(formData);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <DialogHeader>
-        <DialogTitle>Add New Room</DialogTitle>
-        <DialogDescription>
-          Fill in the details below to add a new room.
-        </DialogDescription>
+        <DialogTitle>አዲስ ክፍል ያክሉ</DialogTitle>
+        <DialogDescription>አዲስ ክፍል ለመጨመር ከታች ያሉትን ዝርዝሮች ይሙሉ።</DialogDescription>
       </DialogHeader>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Room Number */}
         <div>
-          <Label htmlFor="room_number">Room Number</Label>
+          <Label htmlFor="room_number">የክፍል ቁጥር</Label>
           <Input id="room_number" {...register("room_number")} />
           {errors.room_number && (
             <p className="text-red-500 text-sm">{errors.room_number.message}</p>
@@ -143,7 +136,7 @@ export default function RoomForm({ setOpen }) {
 
         {/* Room Type */}
         <div>
-          <Label htmlFor="type">Room Type</Label>
+          <Label htmlFor="type">የክፍል ቁጥር</Label>
           <Select onValueChange={(val) => setValue("type", val)}>
             <SelectTrigger>
               <SelectValue placeholder="Select a type" />
@@ -163,7 +156,7 @@ export default function RoomForm({ setOpen }) {
 
         {/* Room Status */}
         <div>
-          <Label htmlFor="status">Room Status</Label>
+          <Label htmlFor="status">የክፍል ሁኔታ</Label>
           <Select onValueChange={(val) => setValue("status", val)}>
             <SelectTrigger>
               <SelectValue placeholder="Select a status" />
@@ -183,7 +176,7 @@ export default function RoomForm({ setOpen }) {
 
         {/* Price per Night */}
         <div>
-          <Label htmlFor="price_per_night">Price per Night (ETB)</Label>
+          <Label htmlFor="price_per_night">የአንድ ሌሊት ዋጋ (ETB)</Label>
           <Input
             id="price_per_night"
             type="number"
@@ -198,7 +191,7 @@ export default function RoomForm({ setOpen }) {
 
         {/* Discount */}
         <div>
-          <Label htmlFor="discount">Discount (%)</Label>
+          <Label htmlFor="discount">ቅናሽ (%)</Label>
           <Input id="discount" type="number" {...register("discount")} />
           {errors.discount && (
             <p className="text-red-500 text-sm">{errors.discount.message}</p>
@@ -207,7 +200,7 @@ export default function RoomForm({ setOpen }) {
 
         {/* Description */}
         <div className="md:col-span-2">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">መግለጫ</Label>
           <Textarea id="description" rows={3} {...register("description")} />
           {errors.description && (
             <p className="text-red-500 text-sm">{errors.description.message}</p>
@@ -217,7 +210,7 @@ export default function RoomForm({ setOpen }) {
 
       {/* Multi Image Upload */}
       <div>
-        <Label htmlFor="images">Upload Room Images (max 5)</Label>
+        <Label htmlFor="images">የክፍል ምስል ስቀል (max 5)</Label>
         <Input
           id="images"
           type="file"
@@ -252,7 +245,7 @@ export default function RoomForm({ setOpen }) {
       {/* Submit */}
       <div className="flex justify-end">
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : "Save Room"}
+          {isPending ? "በማስቀመጥ ላይ..." : "ክፍል ይቆጥቡ"}
         </Button>
       </div>
     </form>

@@ -21,12 +21,12 @@ import {
 } from "lucide-react";
 
 const items = [
-  { title: "Overview", url: "/dashboard", icon: Home },
-  { title: "Rooms", url: "/dashboard/rooms", icon: PlusSquare },
-  { title: "Users", url: "/dashboard/users", icon: Users },
+  { title: "አጠቃላይ እይታ", url: "/dashboard", icon: Home },
+  { title: "ክፍሎች", url: "/dashboard/rooms", icon: PlusSquare },
+  { title: "ተጠቃሚዎች", url: "/dashboard/users", icon: Users },
   // { title: "Report", url: "/dashboard/reservations", icon: Calendar },
-  { title: "Feedbacks", url: "/dashboard/comments", icon: MessageSquare },
-  { title: "Profile Settings", url: "/dashboard/settings", icon: Settings },
+  { title: "ግብረመልሶች", url: "/dashboard/comments", icon: MessageSquare },
+  { title: "የመገለጫ ቅንብሮች", url: "/dashboard/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
@@ -38,15 +38,15 @@ export function AppSidebar() {
         {/* Hotel Brand Section */}
         <div className="px-4 py-6 text-center border-b border-gray-200 dark:border-gray-700">
           <h1 className="text-xl font-bold text-primary">
-            <Link to="/">Samrawi Hotel </Link>
+            <Link to="/">ሰማያዊ ሆቴል </Link>
           </h1>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Dashboard</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">ዳሽቦርድ</p>
         </div>
 
         {/* Navigation */}
         <SidebarGroup className="flex-1">
           <SidebarGroupLabel className="px-4 pt-6 text-gray-500 dark:text-gray-400 text-sm">
-            Navigation
+            አሰሳ
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-2 flex-1">
             <SidebarMenu>
@@ -78,7 +78,7 @@ export function AppSidebar() {
 
       {/* Footer */}
       <div className="px-4 py-4 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400">
-        <p>© 2025 Samrawi Hotel</p>
+        <p>© 2025 ሰማያዊ ሆቴል </p>
       </div>
     </Sidebar>
   );

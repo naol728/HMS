@@ -74,15 +74,15 @@ export default function EditRoom({ room }) {
   return (
     <form onSubmit={handleSave} className="flex flex-col h-full">
       <SheetHeader>
-        <SheetTitle>Edit Room</SheetTitle>
+        <SheetTitle>ክፍልን አርትዕ</SheetTitle>
         <SheetDescription>
-          Make changes to the room details. Click save when you&apos;re done.
+          በክፍሉ ዝርዝሮች ላይ ለውጦችን ያድርጉ። ሲጨርሱ አስቀምጥን ጠቅ ያድርጉ።
         </SheetDescription>
       </SheetHeader>
 
       <div className="flex-1 overflow-y-auto px-4 py-6 grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="room_number">Room Number</Label>
+          <Label htmlFor="room_number">የክፍል ቁጥር</Label>
           <Input
             id="room_number"
             name="room_number"
@@ -93,7 +93,7 @@ export default function EditRoom({ room }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="type">Type</Label>
+          <Label htmlFor="type">አይነት</Label>
           <Select
             value={formState.type}
             onValueChange={(val) =>
@@ -115,7 +115,7 @@ export default function EditRoom({ room }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="status">Status</Label>
+          <Label htmlFor="status">ሁኔታ</Label>
           <Select
             value={formState.status}
             onValueChange={(val) =>
@@ -137,7 +137,7 @@ export default function EditRoom({ room }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="price_per_night">Price per Night</Label>
+          <Label htmlFor="price_per_night">የአንድ ሌሊት ዋጋ</Label>
           <Input
             id="price_per_night"
             type="number"
@@ -149,7 +149,7 @@ export default function EditRoom({ room }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="discount">Discount (%)</Label>
+          <Label htmlFor="discount">ቅናሽ (%)</Label>
           <Input
             id="discount"
             type="number"
@@ -161,7 +161,7 @@ export default function EditRoom({ room }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">መግለጫ</Label>
           <Textarea
             id="description"
             name="description"
@@ -175,10 +175,10 @@ export default function EditRoom({ room }) {
 
       <SheetFooter>
         <Button type="submit" disable={isPending}>
-          Save changes
+          ውጦችን አስቀምጥ
         </Button>
         <SheetClose asChild>
-          <Button variant="outline">Close</Button>
+          <Button variant="outline">ገጠመ</Button>
         </SheetClose>
       </SheetFooter>
     </form>

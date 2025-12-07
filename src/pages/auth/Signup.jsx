@@ -84,17 +84,13 @@ export default function Signup() {
         {/* Branding Header */}
         <CardHeader className="text-center space-y-2 pb-2">
           <CardTitle className="text-3xl font-extrabold text-primary">
-            <Link to="/">Semayawi Hotel</Link>
+            <Link to="/">ሰማያዊ ሆቴል</Link>
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Luxury • Comfort • Convenience
-          </p>
+          <p className="text-sm text-muted-foreground">የቅንጦት • ምቾት • ምቾት</p>
         </CardHeader>
 
         <CardContent className="pt-6">
-          <h2 className="text-xl font-bold text-center mb-6">
-            Create Your Account
-          </h2>
+          <h2 className="text-xl font-bold text-center mb-6">መለያዎን ይፍጠሩ</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* NAME */}
@@ -155,16 +151,16 @@ export default function Signup() {
               className="w-full rounded-md shadow-md hover:shadow-lg transition-all"
               disabled={mutation.isLoading}
             >
-              {mutation.isLoading ? "Signing up..." : "Sign Up"}
+              {mutation.isLoading ? "መመዝገብ..." : "ይመዝገቡ"}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Already have an account?{" "}
+              መለያ አለዎት?{" "}
               <Link
                 to="/login"
                 className="text-primary hover:underline font-medium"
               >
-                Log in
+                ግባ
               </Link>
             </p>
           </form>
