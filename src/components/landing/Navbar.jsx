@@ -29,7 +29,7 @@ export default function Navbar() {
           to="/"
           className="text-2xl font-extrabold text-primary tracking-tight hover:opacity-90 transition"
         >
-          Semayawi Hotel
+          ሰማያዊ ሆቴል
         </Link>
 
         {/* Desktop Menu */}
@@ -53,27 +53,27 @@ export default function Navbar() {
             {!user && (
               <>
                 <Button asChild variant="outline" size="sm">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">ግባ</Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signup">ይመዝገቡ</Link>
                 </Button>
               </>
             )}
 
             {isAdmin && (
               <Button asChild size="sm" variant="destructive">
-                <Link to="/dashboard">Manager Dashboard</Link>
+                <Link to="/dashboard">የአስተዳዳሪ ዳሽቦርድ</Link>
               </Button>
             )}
             {isReception && (
               <Button asChild size="sm" variant="secondary">
-                <Link to="/reception">Reception Panel</Link>
+                <Link to="/reception">የመቀበያ ፓነል</Link>
               </Button>
             )}
             {isCustomer && (
               <Button asChild size="sm" variant="default">
-                <Link to="/rooms">My Bookings</Link>
+                <Link to="/rooms">ቦታ ማስያዣዎቼ</Link>
               </Button>
             )}
 

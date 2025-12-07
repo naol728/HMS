@@ -31,33 +31,32 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
           <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeIn text-blue-500/70">
-            Welcome to Semayawi Hotel
+            እንኳን ወደ ሰማያዊ ሆቴል በደህና መጡ
           </h1>
           <p className="mt-4 text-xl md:text-2xl drop-shadow-md max-w-2xl animate-fadeIn delay-200 text-blue-400/60">
-            Experience luxury, comfort, and convenience in the heart of Debre
-            Berhan.
+            በደብረ ብርሃን ልብ ውስጥ የቅንጦት፣ የምቾት እና የአጠቃቀም ምቾት ይለማመዱ።s
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeIn delay-400">
             {isAdmin && (
               <Button asChild size="lg">
-                <Link to="/dashboard">Manager Dashboard</Link>
+                <Link to="/dashboard">የአስተዳዳሪ ዳሽቦርድ</Link>
               </Button>
             )}
             {isReception && (
               <Button asChild size="lg">
-                <Link to="/reception">Reception Panel</Link>
+                <Link to="/reception">የመቀበያ ፓነል</Link>
               </Button>
             )}
             {isCustomer && (
               <Button asChild size="lg">
-                <Link to="/rooms">Book Now</Link>
+                <Link to="/rooms">አሁኑኑ ቦታ ያስይዙ</Link>
               </Button>
             )}
             {user ? (
               <></>
             ) : (
               <Button asChild size="lg">
-                <Link to="/login">Login</Link>
+                <Link to="/login">ግባ</Link>
               </Button>
             )}
           </div>
@@ -68,16 +67,16 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
           {
-            title: "🛏️ Comfortable Rooms",
-            desc: "Spacious modern rooms with free Wi-Fi, flat-screen TVs, and cozy bedding.",
+            title: "🛏️ ምቹ ክፍሎች",
+            desc: "ሰፊ ዘመናዊ ክፍሎች ከነፃ ዋይፋይ፣ ጠፍጣፋ ስክሪን ቲቪዎች እና ምቹ የአልጋ ልብሶች ጋር።",
           },
           {
-            title: "🍽️ Restaurant & Cafe",
-            desc: "Delight in gourmet meals, fresh coffee, and local dishes served daily.",
+            title: "🍽️ ምግብ ቤት እና ካፌ",
+            desc: "በየቀኑ በሚቀርቡ ጣፋጭ ምግቦች፣ ትኩስ ቡና እና የአካባቢ ምግቦች ይደሰቱ።",
           },
           {
-            title: "🎉 Event Hall",
-            desc: "Ideal for weddings, conferences, and social events with full service.",
+            title: "🎉የዝግጅት አዳራሽ",
+            desc: "ለሠርግ፣ ለኮንፈረንሶች እና ለማህበራዊ ዝግጅቶች በሙሉ አገልግሎት ተስማሚ.",
           },
         ].map((item) => (
           <Card

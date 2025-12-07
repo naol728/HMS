@@ -63,14 +63,14 @@ export default function Profile() {
         </CardHeader>
         <CardContent className="flex justify-around gap-4 mt-6">
           <Link to="/reset-password">
-            <Button>Change Password</Button>
+            <Button>የይለፍ ቃል ቀይር</Button>
           </Link>
           <Button
             variant="destructive"
             onClick={() => mutate()}
             disabled={isPending}
           >
-            Logout
+            ውጣ
           </Button>
         </CardContent>
       </Card>

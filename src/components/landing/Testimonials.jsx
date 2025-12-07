@@ -5,20 +5,20 @@ export default function Testimonials() {
   return (
     <section className="bg-muted py-20 transition-colors" id="testimonial">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-        What Our Guests Say
+        እንግዶቻችን የሚሉት
       </h2>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
           {
-            text: "Amazing stay! The staff was very welcoming and the rooms are spotless.",
+            text: "አስደናቂ ቆይታ! ሰራተኞቹ በጣም አቀባበል አድርገውላቸዋል፤ ክፍሎቹም ምንም እንከን የለሽ ናቸው።",
             name: "Hana T/Hana",
           },
           {
-            text: "The restaurant serves the best local dishes. Highly recommend!",
+            text: "ሬስቶራንቱ ምርጥ የአካባቢ ምግቦችን ያቀርባል። በጣም እመክራለሁ!",
             name: "Abenezer A",
           },
           {
-            text: "Booking was super easy and convenient. Will stay here again.",
+            text: "ቦታ ማስያዝ በጣም ቀላል እና ምቹ ነበር። እዚህ እንደገና እቆያለሁ።",
             name: "Meaza S",
           },
         ].map((feedback) => (

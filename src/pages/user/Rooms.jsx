@@ -89,21 +89,20 @@ export default function Rooms() {
       {/* Title */}
       <div className="text-center space-y-3">
         <h2 className="text-4xl font-extrabold tracking-tight">
-          🏨 Explore Our Rooms
+          🏨 ክፍሎቻችንን ያስሱ
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Find the perfect room for your stay. Use filters to refine by type,
-          price, or availability.
+          ለቆይታዎ የሚስማማውን ክፍል ያግኙ። በአይነት፣ በዋጋ ወይም በአቅርቦት ለማጣራት ማጣሪያዎችን ይጠቀሙ።
         </p>
       </div>
 
       {/* Search & Filters */}
       {/* Search & Filters */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">🔍 Find Your Perfect Room</h3>
+        <h3 className="text-lg font-semibold">🔍 ፍጹም ክፍልዎን ያግኙ</h3>
         <p className="text-sm text-muted-foreground">
-          Use the search box and filters below to quickly narrow down rooms by
-          number, type, status, or price range.
+          ክፍሎችን በቁጥር፣ በአይነት፣ በሁኔታ ወይም በዋጋ ክልል በፍጥነት ለማጥበብ ከታች ያለውን የፍለጋ ሳጥን እና
+          ማጣሪያዎችን ይጠቀሙ።
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 items-end bg-muted/30 p-4 rounded-xl shadow-sm">
@@ -113,7 +112,7 @@ export default function Rooms() {
               htmlFor="search"
               className="block text-sm font-medium text-muted-foreground mb-1"
             >
-              Search
+              ፈልግ
             </label>
             <Search className="absolute left-3 top-9 text-muted-foreground h-4 w-4" />
             <Input
@@ -129,7 +128,7 @@ export default function Rooms() {
           {/* Type Filter */}
           <div>
             <label className="block text-sm font-medium text-muted-foreground mb-1">
-              Room Type
+              የክፍል አይነት
             </label>
             <Select value={type} onValueChange={setType}>
               <SelectTrigger>
@@ -148,7 +147,7 @@ export default function Rooms() {
           {/* Status Filter */}
           <div>
             <label className="block text-sm font-medium text-muted-foreground mb-1">
-              Availability
+              ተገኝነት
             </label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
@@ -167,7 +166,7 @@ export default function Rooms() {
           {/* Price Range */}
           <div>
             <label className="block text-sm font-medium text-muted-foreground mb-1">
-              Price Range (ETB)
+              የዋጋ ክልል (ETB)
             </label>
             <div className="flex gap-2">
               <Input
@@ -190,7 +189,7 @@ export default function Rooms() {
       {/* Rooms Grid */}
       {filteredRooms.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">
-          No rooms found matching your filters.
+          ከማጣሪያዎችዎ ጋር የሚዛመዱ ምንም ክፍሎች አልተገኙም።
         </div>
       ) : (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -252,7 +251,7 @@ export default function Rooms() {
                     onClick={() => handleShowDetail(room.id)}
                     className="transition-transform hover:scale-105"
                   >
-                    View Details
+                    ዝርዝሮችን ይመልከቱ
                   </Button>
                 </CardContent>
               </Card>

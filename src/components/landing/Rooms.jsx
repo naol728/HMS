@@ -39,7 +39,7 @@ export default function Rooms() {
   return (
     <div className="p-6 max-w-7xl mx-auto" id="rooms">
       <h2 className="text-4xl font-extrabold mb-10 text-center">
-        🏨 Explore Our Rooms
+        🏨 ክፍሎቻችንን ያስሱ
       </h2>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -67,7 +67,7 @@ export default function Rooms() {
             {/* Content */}
             <CardHeader>
               <CardTitle className="flex justify-between items-center text-xl">
-                Room {room.room_number}
+                ክፍል {room.room_number}
                 <Badge variant="secondary" className="capitalize">
                   {room.type}
                 </Badge>
@@ -96,10 +96,10 @@ export default function Rooms() {
                   room.status === "reserved" || room.status === "occupied"
                 }
               >
-                {isAdmin && <Link to="/dashboard">Admin Dashboard</Link>}
-                {isReception && <Link to="/reception">Reception Panel</Link>}
-                {isCustomer && <Link to="/rooms">Reserve</Link>}
-                {user ? <></> : <Link to="/login">Login</Link>}
+                {isAdmin && <Link to="/dashboard">የአስተዳዳሪ ዳሽቦርድ</Link>}
+                {isReception && <Link to="/reception">የመቀበያ ፓነል</Link>}
+                {isCustomer && <Link to="/rooms">ቦታ አስይዝ</Link>}
+                {user ? <></> : <Link to="/login">ግባ</Link>}
               </Button>
             </CardFooter>
           </Card>

@@ -11,18 +11,17 @@ export default function Success() {
         <CardHeader>
           <CheckCircle className="w-16 h-16 text-primary mx-auto mb-2" />
           <CardTitle className="text-2xl font-bold text-foreground">
-            🎉 Congratulations!
+            🎉 እንኳን ደስ አላች!
           </CardTitle>
         </CardHeader>
 
         <CardContent>
           <p className="text-lg text-muted-foreground mb-6">
-            Your room reservation was successful. We look forward to hosting
-            you!
+            የክፍል ቦታ ማስያዝዎ ስኬታማ ነበር። እርስዎን ለማስተናገድ በጉጉት እንጠብቃለን!
           </p>
 
           <Link to="/myrooms">
-            <Button className="w-full">Go to My Rooms</Button>
+            <Button className="w-full">ወደ ክፍሎቼ ሂድ</Button>
           </Link>
         </CardContent>
       </Card>

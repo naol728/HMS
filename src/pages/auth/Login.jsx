@@ -43,17 +43,13 @@ export default function Login() {
         {/* Branding Header */}
         <CardHeader className="text-center space-y-2 pb-2">
           <CardTitle className="text-3xl font-extrabold text-primary">
-            <Link to="/">Semayawi Hotel</Link>
+            <Link to="/"> የሰማይ ሆቴል</Link>
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Luxury • Comfort • Convenience
-          </p>
+          <p className="text-sm text-muted-foreground">የቅንጦት • ምቾት • ምቾት</p>
         </CardHeader>
 
         <CardContent className="pt-6">
-          <h2 className="text-xl font-bold text-center mb-6">
-            Login to Your Account
-          </h2>
+          <h2 className="text-xl font-bold text-center mb-6">ወደ መለያዎ ይግቡ</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
@@ -85,25 +81,25 @@ export default function Login() {
               className="w-full rounded-md shadow-md hover:shadow-lg transition-all"
               disabled={mutation.isPending}
             >
-              {mutation.isPending ? "Logging in..." : "Login"}
+              {mutation.isPending ? "በመግባት ላይ..." : "ግባ"}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Don’t have an account?{" "}
+              መለያ የለህም?{" "}
               <Link
                 to="/signup"
                 className="text-primary hover:underline font-medium"
               >
-                Sign up
+                ይመዝገቡ
               </Link>
             </p>
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Forgot your Password?{" "}
+              የይለፍ ቃልዎን ረሱት?{" "}
               <Link
                 to="/forgot-password"
                 className="text-primary hover:underline font-medium"
               >
-                Forgot Password
+                ረሱት
               </Link>
             </p>
           </form>

@@ -103,26 +103,26 @@ export default function PayReservation() {
     <div className="p-6 max-w-6xl mx-auto">
       <div className="flex items-center mb-6">
         <CreditCard className="w-6 h-6 mr-2 text-blue-600" />
-        <h1 className="text-3xl font-bold">💳 My Reservations</h1>
+        <h1 className="text-3xl font-bold">💳 ቦታ ማስያዣዎቼ</h1>
       </div>
 
       {reservations.length === 0 ? (
         <p className="text-center text-muted-foreground mt-10">
-          No reservations found.
+          ምንም ቦታ ማስያዣዎች አልተገኙም።
         </p>
       ) : (
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Room</TableHead>
-              <TableHead>Image</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Check-in</TableHead>
-              <TableHead>Check-out</TableHead>
-              <TableHead>Total Price</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Payment</TableHead>
-              <TableHead>Make Payment</TableHead>
+              <TableHead>ክፍል</TableHead>
+              <TableHead>ምስል</TableHead>
+              <TableHead>አይነት</TableHead>
+              <TableHead>ያረጋግጡ</TableHead>
+              <TableHead>ቼክ-አውት</TableHead>
+              <TableHead>ጠቅላላ ዋጋ</TableHead>
+              <TableHead>ሁኔታ</TableHead>
+              <TableHead>ክፍያ</TableHead>
+              <TableHead>ክፍያ ያድርጉ</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -156,10 +156,10 @@ export default function PayReservation() {
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                       <DialogHeader>
-                        <DialogTitle>Confirm Payment</DialogTitle>
+                        <DialogTitle>ክፍያ ያረጋግጡ</DialogTitle>
                         <DialogDescription className="space-y-4">
                           <p>
-                            Enter amount to pay for Room{" "}
+                            ለክፍል የሚከፍሉትን መጠን ያስገቡ{" "}
                             {res.rooms?.room_number || res.room_id}:
                           </p>
                           <Input
@@ -170,13 +170,13 @@ export default function PayReservation() {
                           />
                           <div className="flex justify-end gap-2 mt-2">
                             <DialogClose asChild>
-                              <Button variant="outline">Cancel</Button>
+                              <Button variant="outline">ሰርዝ</Button>
                             </DialogClose>
                             <Button
                               onClick={() => handlePayment(res.id)}
                               disabled={isPending || !amount}
                             >
-                              {isPending ? "Processing..." : "Pay"}
+                              {isPending ? "ሂደት..." : "ክፍያ"}
                             </Button>
                           </div>
                         </DialogDescription>

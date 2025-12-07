@@ -110,10 +110,10 @@ export default function ReserveRoom() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">🛏️ Rooms</h1>
+      <h1 className="text-3xl font-bold mb-6">🛏️ ክፍሎች</h1>
 
       {rooms.length === 0 ? (
-        <p className="text-center text-muted-foreground">No rooms found.</p>
+        <p className="text-center text-muted-foreground">ምንም ክፍሎች አልተገኙም።</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rooms.map((room) => (
@@ -123,7 +123,7 @@ export default function ReserveRoom() {
             >
               <CardHeader>
                 <CardTitle>
-                  Room {room.room_number} — {room.type}
+                  ክፍሎ {room.room_number} — {room.type}
                 </CardTitle>
                 <CardDescription>{room.description}</CardDescription>
               </CardHeader>
@@ -140,14 +140,14 @@ export default function ReserveRoom() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <DollarSign className="w-4 h-4 text-yellow-500" />
                   <span>
-                    ETB {room.price_per_night} / night{" "}
+                    ETB {room.price_per_night} / ለሊት{" "}
                     {room.discount ? `(-${room.discount})` : ""}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <BedDouble className="w-4 h-4 text-green-500" />
-                  <span>Status: {room.status}</span>
+                  <span>ሁኔታ: {room.status}</span>
                 </div>
 
                 <div className="flex justify-end pt-2">
@@ -177,7 +177,7 @@ export default function ReserveRoom() {
           <div className="space-y-4">
             {/* Check-in */}
             <div>
-              <label className="text-sm font-medium mb-1 block">Check-in</label>
+              <label className="text-sm font-medium mb-1 block">ያረጋግጡ</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="w-full text-left">
@@ -197,9 +197,7 @@ export default function ReserveRoom() {
 
             {/* Check-out */}
             <div>
-              <label className="text-sm font-medium mb-1 block">
-                Check-out
-              </label>
+              <label className="text-sm font-medium mb-1 block">ቼክ-አውት</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="w-full text-left">
@@ -232,13 +230,13 @@ export default function ReserveRoom() {
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
-              Cancel
+              ሰርዝ
             </Button>
             <Button
               onClick={handleConfirmReservation}
               disabled={reservationMutation.isLoading}
             >
-              {reservationMutation.isLoading ? "Reserving..." : "Confirm"}
+              {reservationMutation.isLoading ? "ቦታ ማስያዝ..." : "አረጋግጥ"}
             </Button>
           </DialogFooter>
         </DialogContent>

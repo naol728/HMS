@@ -25,7 +25,7 @@ export default function UserNavbar() {
           to="/"
           className="text-2xl font-extrabold text-primary tracking-tight hover:opacity-90 transition"
         >
-          Semayawi Hotel
+          ሰማያዊ ሆቴል
         </Link>
 
         {/* Desktop Menu */}
@@ -66,9 +66,7 @@ export default function UserNavbar() {
           <SheetContent side="right" className="p-6 bg-background">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
-              <span className="text-xl font-bold text-primary">
-                Semayawi Hotel
-              </span>
+              <span className="text-xl font-bold text-primary">ሰማያዊ ሆቴል</span>
               <ModeToggle />
             </div>
 

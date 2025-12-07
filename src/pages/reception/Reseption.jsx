@@ -61,7 +61,7 @@ export default function Reseption() {
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-        <h1 className="text-3xl font-bold">🏨 Current Reservations</h1>
+        <h1 className="text-3xl font-bold">🏨 የአሁኑ ቦታ ማስያዣዎች</h1>
 
         {/* 🔍 Search bar */}
         <div className="relative w-full sm:w-72">
@@ -78,7 +78,7 @@ export default function Reseption() {
 
       {filteredReservations.length === 0 ? (
         <p className="text-center text-muted-foreground">
-          No reservations found.
+          ምንም ቦታ ማስያዣዎች አልተገኙም።
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -90,7 +90,7 @@ export default function Reseption() {
               <CardHeader className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-lg font-semibold">
-                    Room {res.rooms?.room_number || "N/A"} —{" "}
+                    ክፍል {res.rooms?.room_number || "N/A"} —{" "}
                     {res.rooms?.type || "Unknown"}
                   </CardTitle>
 
@@ -104,7 +104,7 @@ export default function Reseption() {
                 </div>
 
                 <CardDescription className="text-sm text-muted-foreground">
-                  Reserved by {res.users?.name || "Guest"}
+                  የተያዘው በ {res.users?.name || "Guest"}
                 </CardDescription>
               </CardHeader>
 

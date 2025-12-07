@@ -48,24 +48,22 @@ export default function ResetPassword() {
       <Card className="w-full max-w-md shadow-xl rounded-2xl border border-border">
         <CardHeader className="text-center space-y-2 pb-2">
           <CardTitle className="text-3xl font-extrabold text-primary">
-            <Link to="/">Semayawi Hotel</Link>
+            <Link to="/">ሰማያዊ ሆቴል</Link>
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Luxury • Comfort • Convenience
-          </p>
+          <p className="text-sm text-muted-foreground">የቅንጦት • ምቾት • ምቾት</p>
         </CardHeader>
 
         <form onSubmit={handleUpdate} className="flex gap-5 flex-col">
           <CardContent className="space-y-4">
             <h2 className="text-xl font-bold text-center mb-6">
-              Set New Password
+              አዲስ የይለፍ ቃል ያዘጋጁ
             </h2>
             <p className="text-center">
-              Enter your new password to complete the reset process.
+              የዳግም ማስጀመሪያ ሂደቱን ለማጠናቀቅ አዲሱን የይለፍ ቃልዎን ያስገቡ።
             </p>
 
             <div className="space-y-2">
-              <Label>New Password</Label>
+              <Label>አዲስ የይለፍ ቃል</Label>
               <Input
                 type="password"
                 placeholder="Your new password"
@@ -78,7 +76,7 @@ export default function ResetPassword() {
 
           <CardFooter>
             <Button className="w-full" type="submit">
-              Update Password
+              የይለፍ ቃል አዘምን
             </Button>
           </CardFooter>
         </form>

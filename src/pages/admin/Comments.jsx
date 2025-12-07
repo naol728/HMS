@@ -42,7 +42,7 @@ export default function DashboardComments() {
   if (error)
     return (
       <div className="text-center text-red-500 mt-10">
-        Failed to load feedbacks 😢
+        ግብረመልሶችን መጫን አልተሳካም 😢
       </div>
     );
 
@@ -50,9 +50,7 @@ export default function DashboardComments() {
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Customer Feedbacks
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">የደንበኛ ግብረመልሶች</h1>
 
         {/* Search Bar */}
         <div className="relative w-full sm:w-72">
@@ -72,7 +70,7 @@ export default function DashboardComments() {
       {/* Feedback List */}
       {filteredFeedbacks.length === 0 ? (
         <p className="text-center text-muted-foreground mt-20">
-          No feedbacks found.
+          ምንም ግብረመልስ አልተገኘም።
         </p>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -84,7 +82,7 @@ export default function DashboardComments() {
               <CardHeader className="space-y-1">
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-lg font-semibold">
-                    Room {fb.room.room_number} — {fb.room.type}
+                    ክፍል {fb.room.room_number} — {fb.room.type}
                   </CardTitle>
                   <Badge
                     variant={
@@ -113,15 +111,15 @@ export default function DashboardComments() {
                   )}
                   <div className="text-sm text-muted-foreground space-y-1">
                     <p>
-                      <span className="font-semibold">Type:</span>{" "}
+                      <span className="font-semibold">አይነት:</span>{" "}
                       {fb.room.type}
                     </p>
                     <p>
-                      <span className="font-semibold">Price:</span> ETB{" "}
+                      <span className="font-semibold">ዋጋ:</span> ETB{" "}
                       {fb.room.price_per_night}
                     </p>
                     <p>
-                      <span className="font-semibold">Status:</span>{" "}
+                      <span className="font-semibold">ሁኔታ:</span>{" "}
                       {fb.room.status}
                     </p>
                   </div>
@@ -150,19 +148,19 @@ export default function DashboardComments() {
                 {/* Reservation Info */}
                 <div className="border-t pt-3 text-sm text-muted-foreground space-y-1">
                   <p>
-                    <span className="font-semibold">Check-in:</span>{" "}
+                    <span className="font-semibold">ያረጋግጡ:</span>{" "}
                     {fb.reservation.check_in}
                   </p>
                   <p>
-                    <span className="font-semibold">Check-out:</span>{" "}
+                    <span className="font-semibold">ቼክ-አውት:</span>{" "}
                     {fb.reservation.check_out}
                   </p>
                   <p>
-                    <span className="font-semibold">Total:</span> ETB{" "}
+                    <span className="font-semibold">ጠቅላላ:</span> ETB{" "}
                     {fb.reservation.total_price}
                   </p>
                   <p>
-                    <span className="font-semibold">Status:</span>{" "}
+                    <span className="font-semibold">ሁኔታ:</span>{" "}
                     {fb.reservation.status}
                   </p>
                 </div>

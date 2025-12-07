@@ -3,28 +3,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function About() {
   const services = [
     {
-      title: "🛏️ Comfortable Rooms",
-      desc: "Spacious rooms with modern design, free Wi-Fi, and premium bedding.",
+      title: "🛏️ ምቹ ክፍሎች",
+      desc: "ዘመናዊ ዲዛይን፣ ነፃ ዋይፋይ እና ፕሪሚየም የአልጋ ልብሶች ያሏቸው ሰፊ ክፍሎች.",
     },
     {
-      title: "🍽️ Restaurant & Cafe",
-      desc: "Enjoy Ethiopian and international dishes prepared by top chefs.",
+      title: "🍽️ ምግብ ቤት እና ካፌ",
+      desc: "በዋና ዋና ሼፎች የተዘጋጁትን የኢትዮጵያ እና ዓለም አቀፍ ምግቦችን ይደሰቱ።",
     },
     {
-      title: "🏊 Swimming Pool & Spa",
-      desc: "Relax in our pool and enjoy a full spa experience.",
+      title: "🏊 የመዋኛ ገንዳ እና ስፓ",
+      desc: "በመዋኛ ገንዳችን ውስጥ ዘና ይበሉ እና ሙሉ የስፓ ተሞክሮ ይደሰቱ።",
     },
     {
-      title: "🎉 Event & Conference Hall",
-      desc: "Host weddings, meetings, and events in our fully equipped hall.",
+      title: "🎉 የዝግጅት እና የኮንፈረንስ አዳራሽ",
+      desc: "ሙሉ በሙሉ በተሟላ አዳራሽ ውስጥ ሰርጎችን፣ ስብሰባዎችን እና ዝግጅቶችን ያስተናግዱ።",
     },
     {
-      title: "🚗 Free Parking & Shuttle",
-      desc: "Secure parking and shuttle services for your convenience.",
+      title: "🚗 ነፃ የመኪና ማቆሚያ እና ሹትል",
+      desc: "ለእርስዎ ምቾት ሲባል ደህንነቱ የተጠበቀ የመኪና ማቆሚያ እና የማመላለሻ አገልግሎት",
     },
     {
-      title: "💻 Business Center",
-      desc: "Workstations, printing, and fast internet for business travelers.",
+      title: "💻 የንግድ ማዕከል",
+      desc: "የስራ ጣቢያዎች፣ ህትመት እና ለንግድ ተጓዦች ፈጣን ኢንተርኔት.",
     },
   ];
 
@@ -32,17 +32,16 @@ export default function About() {
     <div className="max-w-7xl mx-auto px-6 py-16 space-y-12" id="about">
       {/* Intro */}
       <section className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">About Semayawi Hotel</h1>
+        <h1 className="text-4xl font-bold">ስለ ሰማያዊ ሆቴል</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Located in the heart of Debre Berhan, Semayawi Hotel offers a blend of
-          modern luxury and Ethiopian hospitality. Our mission is to make every
-          stay comfortable, memorable, and affordable.
+          በደብረ ብርሃን እምብርት ላይ የሚገኘው ሰማያዊ ሆቴል ዘመናዊ የቅንጦት እና የኢትዮጵያዊ እንግዳ ተቀባይነትን
+          ያጣምራል። ተልእኳችን እያንዳንዱን ምቹ፣ የማይረሳ እና ተመጣጣኝ ዋጋ ያለው እንዲሆን ማድረግ ነው።
         </p>
       </section>
 
       {/* Services */}
       <section>
-        <h2 className="text-3xl font-bold text-center mb-10">Our Services</h2>
+        <h2 className="text-3xl font-bold text-center mb-10">አገልግሎቶቻችን</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <Card

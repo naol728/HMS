@@ -235,14 +235,12 @@ export function DashboardRooms() {
     <div className="w-full space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold tracking-tight">
-          🏨 Rooms Mangement
-        </h2>
+        <h2 className="text-2xl font-bold tracking-tight">🏨 የክፍሎች አስተዳደር</h2>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button size="lg" className="flex items-center gap-2 px-6">
               <PlusSquare className="w-5 h-5" />
-              Add Room
+              ክፍል ያክሉ
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
@@ -333,7 +331,7 @@ export function DashboardRooms() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No rooms found.
+                  ምንም ክፍሎች አልተገኙም።
                 </TableCell>
               </TableRow>
             )}
@@ -354,7 +352,7 @@ export function DashboardRooms() {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            ቀዳሚ
           </Button>
           <Button
             variant="outline"
@@ -362,7 +360,7 @@ export function DashboardRooms() {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            ቀጣይ
           </Button>
         </div>
       </div>
